@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,9 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="default">Login</Button>
+          <Link href="/login">
+            <Button variant="default">Login</Button>
+          </Link>
         </div>
 
         <div className="md:hidden">
@@ -47,9 +50,11 @@ export default function Navbar() {
             value={searchTerm}
             onChange={(e) => setSearchTearm(e.target.value)}
           />
-          <Button variant="default" className="w-full">
-            Login
-          </Button>
+          <Link href="/login">
+            <Button variant="default" className="w-full">
+              Login
+            </Button>
+          </Link>
         </div>
       )}
     </nav>
