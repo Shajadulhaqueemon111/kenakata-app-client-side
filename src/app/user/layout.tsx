@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
-
 import {
   Sidebar,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { AppSidebarContent } from "./sidebar/sidebar";
+
+import { Geist, Geist_Mono } from "next/font/google";
+import Navbar from "./navbar/page";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Kenakata App",
@@ -19,7 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <SidebarProvider>
           <div className="flex h-screen">
             <Sidebar className="w-64">
@@ -27,7 +41,11 @@ export default function RootLayout({
             </Sidebar>
             <main className="flex-1 p-4">
               <SidebarTrigger />
-              {children}
+
+              <Navbar />
+
+              {/* Page Content */}
+              <div className="mt-4">{children}</div>
             </main>
           </div>
         </SidebarProvider>
