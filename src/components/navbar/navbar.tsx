@@ -1,12 +1,12 @@
 "use client";
-
-import React from "react";
+import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-// import Image from "next/image";
-// import kenakata from "../../user/allImages/kenakata.jpg";
+import { Input } from "@/components/ui/input";
+
 export default function Navbar() {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTearm] = useState("");
 
   return (
     <nav className="bg-white shadow-md px-4 py-3 w-full fixed top-0 left-0 z-50 ">
@@ -18,10 +18,12 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex flex-1 mx-6 max-w-xl">
-          <input
+          <Input
             type="text"
             placeholder="Search products..."
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={searchTerm}
+            onChange={(e) => setSearchTearm(e.target.value)}
           />
         </div>
 
@@ -38,10 +40,12 @@ export default function Navbar() {
 
       {isOpen && (
         <div className="md:hidden mt-3 space-y-2 px-4">
-          <input
+          <Input
             type="text"
             placeholder="Search products..."
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={searchTerm}
+            onChange={(e) => setSearchTearm(e.target.value)}
           />
           <Button variant="default" className="w-full">
             Login
