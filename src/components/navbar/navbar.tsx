@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,8 +7,14 @@ import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTearm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [hasMounted, setHasMounted] = useState(false);
 
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) return null; // 🛑 Prevent hydration misma
   return (
     <nav className="bg-white shadow-md px-4 py-3 w-full fixed top-0 left-0 z-50 ">
       <div className="container mx-auto flex items-center justify-between">
@@ -24,7 +30,7 @@ export default function Navbar() {
             placeholder="Search products..."
             className="w-full px-4 py-2 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={searchTerm}
-            onChange={(e) => setSearchTearm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
@@ -48,7 +54,7 @@ export default function Navbar() {
             placeholder="Search products..."
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={searchTerm}
-            onChange={(e) => setSearchTearm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)} // ✅ fixed
           />
           <Link href="/login">
             <Button variant="default" className="w-full">
