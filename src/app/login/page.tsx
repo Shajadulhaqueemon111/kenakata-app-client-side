@@ -14,7 +14,7 @@ import { jwtDecode } from "jwt-decode";
 interface DecodedToken {
   email?: string;
   role?: string;
-  profilImage?: string;
+  profileImage?: string;
   exp?: number;
 }
 
@@ -68,14 +68,14 @@ const LoginPage = () => {
       const user = {
         email: decoded.email || data.data.email,
         role: decoded.role || data.data.role,
-        profilImage: decoded.profilImage || data.data.profilImage,
+        profileImage: decoded.profileImage || data.data.profileImage,
         exp: decoded.exp || data.data.exp,
       };
-
+      console.log("hi my name emon", user);
       setUser(user);
       localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-      router.push(user.role === "admin" ? "/admin-dashboard" : "/");
+      router.push(user.role === "admin" ? "/dashboard" : "/");
     } catch (error) {
       console.error("Login error:", error);
       toast.error("Something went wrong");
@@ -126,7 +126,7 @@ const LoginPage = () => {
         <Button
           variant="outline"
           className="w-full flex items-center justify-center gap-2"
-          onClick={() => signIn("google")}
+          onClick={() => signIn("google", { callbackUrl: "/user" })}
         >
           <FcGoogle className="text-xl" />
           Continue with Google

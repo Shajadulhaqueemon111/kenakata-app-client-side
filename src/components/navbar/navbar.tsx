@@ -17,6 +17,8 @@ export default function Navbar() {
 
   const { data: session, status } = useSession();
   const { user: customUser, logout: customLogOut } = useAuth();
+  console.log("customUser:", customUser);
+  console.log("customUser?.profileImage:", customUser?.profileImage);
   const router = useRouter();
   useEffect(() => {
     setHasMounted(true);
@@ -24,13 +26,11 @@ export default function Navbar() {
 
   if (!hasMounted) return null;
 
-  // Determine if user is logged in by either NextAuth or your own auth
   const isLoggedIn = !!session || !!customUser;
   const displayName =
     session?.user?.name || session?.user?.email || customUser?.email;
-  const displayImage = session?.user?.image || customUser?.profilImage;
+  const displayImage = session?.user?.image || customUser?.profileImage;
 
-  // Logout handler picks correct logout based on which user is logged in
   const handleLogout = () => {
     if (session) {
       signOut({ redirect: true, callbackUrl: "/login" });
@@ -68,8 +68,8 @@ export default function Navbar() {
                   <Image
                     src={displayImage}
                     alt="User avatar"
-                    width={32}
-                    height={32}
+                    width={34}
+                    height={34}
                     className="object-cover"
                     priority
                   />

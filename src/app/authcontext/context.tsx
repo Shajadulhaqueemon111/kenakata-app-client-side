@@ -12,7 +12,7 @@ import { logOut } from "../login/logout";
 interface User {
   email: string;
   role: string;
-  profilImage?: string;
+  profileImage?: string;
 }
 
 interface AuthContextProps {
