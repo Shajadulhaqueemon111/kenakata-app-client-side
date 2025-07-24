@@ -57,6 +57,7 @@ const BannerPage = () => {
           />
         </SwiperSlide>
       </Swiper>
+
       <div className="mt-4">
         <SecondBanner />
       </div>

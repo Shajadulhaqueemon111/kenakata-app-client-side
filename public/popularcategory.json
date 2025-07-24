@@ -1,72 +1,221 @@
 [
   {
-    "name": "Fresh Mango (1kg)",
-    "category": "Fruits & Vegetables",
-    "image": "https://yourdomain.com/images/products/mango.jpg",
-    "price": "180",
-    "description": "Juicy and sweet mangoes directly from the orchard."
+    "name": "Apple (1kg)",
+    "category": "Fruits",
+    "price": "120",
+    "weight": "1kg",
+    "description": "Crisp and sweet apples perfect for snacking.",
+    "image": "https://i.ibb.co/vD8zPvK/apple.jpg"
+  },
+  {
+    "name": "Banana (12 pcs)",
+    "category": "Fruits",
+    "price": "50",
+    "weight": "12 pcs",
+    "description": "Fresh bananas high in potassium.",
+    "image": "https://i.ibb.co/fmhrc2K/bananas.webp"
+  },
+  {
+    "name": "Orange (1kg)",
+    "category": "Fruits ",
+    "price": "100",
+    "weight": "1kg",
+    "description": "Juicy oranges full of Vitamin C.",
+    "image": "https://i.ibb.co/W44559Cr/pexels-pixabay-327098.jpg"
+  },
+  {
+    "name": "Grapes (500gm)",
+    "category": "Fruits ",
+    "price": "90",
+    "weight": "500gm",
+    "description": "Seedless green grapes for a healthy treat.",
+    "image": "https://i.ibb.co/8D1YPrRS/grapes-0-jpg.webp"
+  },
+
+  {
+    "name": "Potato (1kg)",
+    "category": "Vegetables",
+    "price": "25",
+    "weight": "1kg",
+    "description": "Fresh and organic potatoes, great for everyday cooking.",
+    "image": "https://i.ibb.co/hFxGL49D/potatoes-challenge-1-1.jpg"
+  },
+  {
+    "name": "Tomato (1kg)",
+    "category": "Vegetables",
+    "price": "30",
+    "weight": "1kg",
+    "description": "Juicy red tomatoes, ideal for curry and salad.",
+    "image": "https://i.ibb.co/JjBMKrs9/TOMATOES-RED-RIPE-VINE-SS-1-1024x681.jpg"
+  },
+  {
+    "name": "Spinach (250gm)",
+    "category": "Vegetables",
+    "price": "20",
+    "weight": "250gm",
+    "description": "Fresh spinach leaves full of iron and vitamins.",
+    "image": "https://i.ibb.co/vC7FSxrt/intro-1670518347.jpg"
+  },
+  {
+    "name": "Carrot (500gm)",
+    "category": "Vegetables",
+    "price": "35",
+    "weight": "500gm",
+    "description": "Crunchy and sweet carrots perfect for snacks and dishes.",
+    "image": "https://i.ibb.co/BVpBZSHY/12818-1-500x500.webp"
   },
   {
     "name": "Hilsha Fish (1kg)",
-    "category": "Meat & Fish",
-    "image": "https://yourdomain.com/images/products/hilsha.jpg",
+    "category": "Fish",
     "price": "750",
-    "description": "Premium quality fresh Hilsha, rich in taste and nutrition."
+    "weight": "1kg",
+    "description": "Premium quality fresh Hilsha, rich in taste and nutrition.",
+    "image": "https://i.ibb.co/9mgBDF13/1611114902-hilsa1kg.jpg"
   },
+  {
+    "name": "Rui Fish (1kg)",
+    "category": "Fish",
+    "price": "400",
+    "weight": "1kg",
+    "description": "Fresh Rui fish, perfect for traditional curries.",
+    "image": "https://i.ibb.co/Zz2LkyDW/istockphoto-1499915568-612x612.jpg"
+  },
+  {
+    "name": "Katla Fish (1kg)",
+    "category": "Fish",
+    "price": "420",
+    "weight": "1kg",
+    "description": "Large Katla fish ideal for spicy preparations.",
+    "image": "https://i.ibb.co/KptQhjYj/Catla-catla.jpg"
+  },
+  {
+    "name": "Prawn (500gm)",
+    "category": "Fish",
+    "price": "500",
+    "weight": "500gm",
+    "description": "Freshwater prawns with tender meat and great flavor.",
+    "image": "https://i.ibb.co/ZRdSW7Yh/Tiger-Prawn-1.webp"
+  },
+  {
+    "name": "Tilapia Fish (1kg)",
+    "category": "Fish",
+    "price": "300",
+    "weight": "1kg",
+    "description": "Farm-fresh tilapia fish, soft and flavorful.",
+    "image": "https://i.ibb.co/LD0Q6FVv/images-6.jpg"
+  },
+  {
+    "name": "Beef (1kg)",
+    "category": "Meat",
+    "price": "700",
+    "weight": "1kg",
+    "description": "Fresh beef perfect for curry, steak, or kebabs.",
+    "image": "https://i.ibb.co/2YpDCrSM/360-F-278776362-2u1n3jb6yxmpj-BP9lhp-Emx-Z9-TIzt-Ap-T3.jpg"
+  },
+  {
+    "name": "Chicken (1kg)",
+    "category": "Meat",
+    "price": "180",
+    "weight": "1kg",
+    "description": "Fresh broiler chicken ideal for daily meals.",
+    "image": "https://i.ibb.co/0jGSNH1D/Chicken-Curry-Cut-min-1.png"
+  },
+  {
+    "name": "Mutton (1kg)",
+    "category": "Meat",
+    "price": "950",
+    "weight": "1kg",
+    "description": "High-quality mutton for special recipes and biryani.",
+    "image": "https://i.ibb.co/2YpDCrSM/360-F-278776362-2u1n3jb6yxmpj-BP9lhp-Emx-Z9-TIzt-Ap-T3.jpg"
+  },
+  {
+    "name": "Duck Meat (1kg)",
+    "category": "Meat",
+    "price": "600",
+    "weight": "1kg",
+    "description": "Fresh duck meat with rich flavor and tenderness.",
+    "image": "https://i.ibb.co/LdGnfmKR/1679555342499-sku-1027-0-500x500.webp"
+  },
+
   {
     "name": "Sunflower Oil (2L)",
     "category": "Cooking Essentials",
-    "image": "https://yourdomain.com/images/products/sunflower-oil.jpg",
     "price": "390",
-    "description": "Pure sunflower oil perfect for healthy cooking."
+    "weight": "2L",
+    "description": "Pure sunflower oil perfect for healthy cooking.",
+    "image": "https://i.ibb.co/jPPx43sF/Sunflower-Oil.jpg"
   },
+  {
+    "name": "Bashmati Rice (5kg)",
+    "category": "Cooking Essentials",
+    "price": "750",
+    "weight": "5kg",
+    "description": "Premium long grain basmati rice ideal for biryani and pulao.",
+    "image": "https://i.ibb.co/21cF9PZh/istockphoto-519309790-612x612.jpg"
+  },
+  {
+    "name": "Lentils (1kg)",
+    "category": "Cooking Essentials",
+    "price": "120",
+    "weight": "1kg",
+    "description": "High-quality red lentils for everyday dal recipes.",
+    "image": "https://i.ibb.co/QvDp5gw4/organic-lentils-red-whole.jpg"
+  },
+  {
+    "name": "Mustard Oil (1L)",
+    "category": "Cooking Essentials",
+    "price": "210",
+    "weight": "1L",
+    "description": "Strong aromatic mustard oil ideal for traditional cooking.",
+    "image": "https://i.ibb.co/jPPx43sF/Sunflower-Oil.jpg"
+  },
+  {
+    "name": "Atta (Whole Wheat Flour) 2kg",
+    "category": "Cooking Essentials",
+    "price": "160",
+    "weight": "2kg",
+    "description": "Stone-ground whole wheat flour perfect for soft rotis.",
+    "image": "https://i.ibb.co/gb0qC9QW/wheat-flour-bunch-ears-dried-600nw-1933602335.webp"
+  },
+
   {
     "name": "Dishwashing Liquid (500ml)",
     "category": "Cleaning Products",
-    "image": "https://yourdomain.com/images/products/dishwashing.jpg",
     "price": "110",
-    "description": "Tough on grease, gentle on hands."
+    "weight": "500ml",
+    "description": "Tough on grease, gentle on hands.",
+    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg"
   },
   {
-    "name": "Coca-Cola (1L)",
-    "category": "Beverages",
-    "image": "https://yourdomain.com/images/products/coca-cola.jpg",
-    "price": "60",
-    "description": "Refreshing soft drink to uplift your mood."
-  },
-  {
-    "name": "Potato Chips (Large)",
-    "category": "Snacks & Biscuits",
-    "image": "https://yourdomain.com/images/products/chips.jpg",
-    "price": "50",
-    "description": "Crispy and salty chips perfect for snacking."
-  },
-  {
-    "name": "Fresh Milk (1L)",
-    "category": "Dairy & Eggs",
-    "image": "https://yourdomain.com/images/products/milk.jpg",
-    "price": "90",
-    "description": "High-quality fresh milk packed with calcium."
-  },
-  {
-    "name": "Pampers Diapers (Medium, 20pcs)",
-    "category": "Baby Products",
-    "image": "https://yourdomain.com/images/products/pampers.jpg",
-    "price": "520",
-    "description": "Comfortable and highly absorbent diapers for your baby."
-  },
-  {
-    "name": "Face Wash Gel (100ml)",
-    "category": "Beauty & Personal Care",
-    "image": "https://yourdomain.com/images/products/face-wash.jpg",
+    "name": "Floor Cleaner (1L)",
+    "category": "Cleaning Products",
     "price": "180",
-    "description": "Gentle face wash for clean and refreshed skin."
+    "weight": "1L",
+    "description": "Kills 99.9% of germs and leaves floors sparkling clean.",
+    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg"
   },
   {
-    "name": "Dog Food (2kg)",
-    "category": "Pet Care",
-    "image": "https://yourdomain.com/images/products/dog-food.jpg",
-    "price": "680",
-    "description": "Nutritious and tasty food for your furry friend."
+    "name": "Toilet Cleaner (500ml)",
+    "category": "Cleaning Products",
+    "price": "95",
+    "weight": "500ml",
+    "description": "Powerful toilet cleaner for deep disinfection and stain removal.",
+    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg"
+  },
+  {
+    "name": "Glass Cleaner (650ml)",
+    "category": "Cleaning Products",
+    "price": "130",
+    "weight": "650ml",
+    "description": "Streak-free shine for all your glass and mirror surfaces.",
+    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg"
+  },
+  {
+    "name": "Laundry Detergent (2kg)",
+    "category": "Cleaning Products",
+    "price": "290",
+    "weight": "2kg",
+    "description": "Removes tough stains and keeps clothes smelling fresh.",
+    "image": "https://i.ibb.co/xqk8gZC7/laundry-detergent-2048px-5533-3x2-1.webp"
   }
 ]
