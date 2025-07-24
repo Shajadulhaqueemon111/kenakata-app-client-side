@@ -8,7 +8,7 @@ export const refreshAccessToken = async (
   setUser: (user: any | null) => void
 ): Promise<boolean> => {
   try {
-    const res = await fetch("http://localhost:5001/api/v1/auth/refresh-token", {
+    const res = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
       method: "POST",
       credentials: "include",
     });
@@ -21,7 +21,7 @@ export const refreshAccessToken = async (
       setUser({
         email: decoded.email,
         role: decoded.role,
-        profilImage: decoded.profilImage,
+        profileImage: decoded.profileImage,
       });
 
       toast.success("Token refreshed successfully!");

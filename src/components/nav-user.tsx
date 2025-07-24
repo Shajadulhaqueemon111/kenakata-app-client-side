@@ -8,7 +8,7 @@ import {
   IconUserCircle,
 } from "@tabler/icons-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 import {
   DropdownMenu,
@@ -29,11 +29,19 @@ import {
 
 import { useAuth } from "@/app/authcontext/context";
 
-export function NavUser() {
+export function NavUser({
+  user,
+}: {
+  user: {
+    name: string;
+    email: string;
+    avatar: string;
+  };
+}) {
   const { isMobile } = useSidebar();
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
 
-  if (!user) return null; // prevent rendering if not logged in
+  if (!user) return null;
 
   return (
     <SidebarMenu>
@@ -45,7 +53,7 @@ export function NavUser() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg grayscale">
-                <AvatarImage src={user.profileImage} alt="" />
+                {/* <AvatarImage src={user.profileImage} alt="" /> */}
                 <AvatarFallback className="rounded-lg">U</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Fresh Mango (1kg)",
+    "category": "Fruits & Vegetables",
+    "image": "https://yourdomain.com/images/products/mango.jpg",
+    "price": "180",
+    "description": "Juicy and sweet mangoes directly from the orchard."
+  },
+  {
+    "name": "Hilsha Fish (1kg)",
+    "category": "Meat & Fish",
+    "image": "https://yourdomain.com/images/products/hilsha.jpg",
+    "price": "750",
+    "description": "Premium quality fresh Hilsha, rich in taste and nutrition."
+  },
+  {
+    "name": "Sunflower Oil (2L)",
+    "category": "Cooking Essentials",
+    "image": "https://yourdomain.com/images/products/sunflower-oil.jpg",
+    "price": "390",
+    "description": "Pure sunflower oil perfect for healthy cooking."
+  },
+  {
+    "name": "Dishwashing Liquid (500ml)",
+    "category": "Cleaning Products",
+    "image": "https://yourdomain.com/images/products/dishwashing.jpg",
+    "price": "110",
+    "description": "Tough on grease, gentle on hands."
+  },
+  {
+    "name": "Coca-Cola (1L)",
+    "category": "Beverages",
+    "image": "https://yourdomain.com/images/products/coca-cola.jpg",
+    "price": "60",
+    "description": "Refreshing soft drink to uplift your mood."
+  },
+  {
+    "name": "Potato Chips (Large)",
+    "category": "Snacks & Biscuits",
+    "image": "https://yourdomain.com/images/products/chips.jpg",
+    "price": "50",
+    "description": "Crispy and salty chips perfect for snacking."
+  },
+  {
+    "name": "Fresh Milk (1L)",
+    "category": "Dairy & Eggs",
+    "image": "https://yourdomain.com/images/products/milk.jpg",
+    "price": "90",
+    "description": "High-quality fresh milk packed with calcium."
+  },
+  {
+    "name": "Pampers Diapers (Medium, 20pcs)",
+    "category": "Baby Products",
+    "image": "https://yourdomain.com/images/products/pampers.jpg",
+    "price": "520",
+    "description": "Comfortable and highly absorbent diapers for your baby."
+  },
+  {
+    "name": "Face Wash Gel (100ml)",
+    "category": "Beauty & Personal Care",
+    "image": "https://yourdomain.com/images/products/face-wash.jpg",
+    "price": "180",
+    "description": "Gentle face wash for clean and refreshed skin."
+  },
+  {
+    "name": "Dog Food (2kg)",
+    "category": "Pet Care",
+    "image": "https://yourdomain.com/images/products/dog-food.jpg",
+    "price": "680",
+    "description": "Nutritious and tasty food for your furry friend."
+  }
+]

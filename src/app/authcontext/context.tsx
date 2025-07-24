@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const savedUser = localStorage.getItem("loggedInUser");
     const token = localStorage.getItem("accessToken");
-
+    console.log(token);
     if (savedUser) setUser(JSON.parse(savedUser));
 
     const checkTokenValidity = async () => {
