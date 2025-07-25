@@ -6,10 +6,13 @@ import React, { useEffect, useState } from "react";
 import Loading from "../loading";
 import Image from "next/image";
 import { TiShoppingCart } from "react-icons/ti";
+import { useSearch } from "@/context/SearchContext";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/app/redux/features/counter/counterSlice";
 
 const ITEMS_PER_PAGE = 8;
 
-const ProductCard = ({ item }: { item: any }) => (
+const ProductCard = ({ item, dispatch }: { item: any; dispatch: any }) => (
   <div className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full bg-white">
     <Image
       src={item.image}
@@ -25,7 +28,10 @@ const ProductCard = ({ item }: { item: any }) => (
     <p className="mt-1 font-bold text-black">৳{item.price}</p>
     <p className="text-xs text-gray-500">Weight: {item.weight}</p>
     <div className="text-center mx-auto mt-4">
-      <button className="text-sm flex gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded">
+      <button
+        onClick={() => dispatch(addToCart(item))}
+        className="text-sm flex gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded"
+      >
         <TiShoppingCart className="text-xl" />
         Add to Bag
       </button>
@@ -37,12 +43,20 @@ const AllFreshMeatAndFish = () => {
   const [fish, setFish] = useState<any[]>([]);
   const [meats, setMeats] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-
+  const { query } = useSearch();
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
 
-  // একসাথে fish + meats মিশিয়ে pagination এর জন্য
-  const combined = [...fish, ...meats];
-
+  const filteredFish = fish.filter((item) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
+  const filteredMeats = meats.filter((item) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
+  const combined = [...filteredFish, ...filteredMeats];
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [query]);
   const totalPages = Math.ceil(combined.length / ITEMS_PER_PAGE);
 
   const paginate = (items: any[], page: number) =>
@@ -90,7 +104,7 @@ const AllFreshMeatAndFish = () => {
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
             {currentItems.map((item) => (
-              <ProductCard key={item._id} item={item} />
+              <ProductCard key={item._id} item={item} dispatch={dispatch} />
             ))}
           </div>
 

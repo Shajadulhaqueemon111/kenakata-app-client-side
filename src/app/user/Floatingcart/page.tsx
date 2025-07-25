@@ -58,7 +58,7 @@ const FloatingCart = () => {
           </button>
         </div>
 
-        <div className="p-4 overflow-y-auto h-[calc(100%-60px)]">
+        <div className="p-4 overflow-y-auto h-[calc(100%-120px)]">
           {cartItems.length === 0 ? (
             <p className="text-gray-500 text-sm">Your cart is empty.</p>
           ) : (
@@ -119,6 +119,18 @@ const FloatingCart = () => {
             ))
           )}
         </div>
+
+        {cartItems.length > 0 && (
+          <div className="p-4 border-t">
+            <Link
+              href="/user/viewdetails"
+              className="w-full block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded text-sm font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              View All Details
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Backdrop */}
