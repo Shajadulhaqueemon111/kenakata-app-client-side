@@ -1,11 +1,40 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./features/counter/counterSlice";
-export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
+import { combineReducers } from "redux";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage"; // localStorage
+import cartReducer from "./features/counter/counterSlice";
+
+const rootReducer = combineReducers({
+  cart: cartReducer,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["cart"], // only cart will be persisted
+};
 
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export const persistor = persistStore(store);
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

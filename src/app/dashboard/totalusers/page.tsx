@@ -12,7 +12,7 @@ type Tuser = {
   _id: string;
   name: string;
   email: string;
-  status: "active" | "inactive";
+  status: "active" | "block";
   role: string;
   isDeleted: boolean;
   createdAt: string;

@@ -39,7 +39,9 @@ const FreshFruites = () => {
       <FruitesBanner />
       <div className="mt-4">
         <div className="mt-4 mb-4">
-          <h1 className="text-xl font-bold text-center">Fresh Fruites</h1>
+          <h1 className="text-xl font-bold text-center text-black">
+            Fresh Fruites
+          </h1>
         </div>
         {loading ? (
           <div className="text-center text-gray-500">

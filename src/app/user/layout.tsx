@@ -8,6 +8,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import Navbar from "@/components/navbar/navbar";
 import Footer from "./footer/page";
+import FloatingCart from "./Floatingcart/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function UserLayout({
           <SidebarTrigger className="text-black mt-10" />
           <Navbar />
           <div className="mt-4">{children}</div>
+          <FloatingCart></FloatingCart>
           <Footer />
         </main>
       </div>
