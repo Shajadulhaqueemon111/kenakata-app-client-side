@@ -9,12 +9,13 @@ import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import { useAuth } from "@/app/authcontext/context";
 import { useRouter } from "next/navigation";
+import { useSearch } from "@/context/SearchContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
   const [hasMounted, setHasMounted] = useState(false);
-
+  const { query, setQuery } = useSearch();
   const { data: session, status } = useSession();
   const { user: customUser, logout: customLogOut } = useAuth();
   console.log("customUser:", customUser);
@@ -54,8 +55,8 @@ export default function Navbar() {
             type="text"
             placeholder="Search products..."
             className="w-full px-4 py-2 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
         </div>
 
@@ -105,8 +106,8 @@ export default function Navbar() {
             type="text"
             placeholder="Search products..."
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
 
           {status === "loading" ? null : isLoggedIn ? (

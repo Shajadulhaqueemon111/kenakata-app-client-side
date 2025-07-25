@@ -7,11 +7,15 @@ import publicAxios from "@/axiosInstance/publicaxios";
 import Image from "next/image";
 import { TiShoppingCart } from "react-icons/ti";
 import Loading from "../loading";
+import { useSearch } from "@/context/SearchContext";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/app/redux/features/counter/counterSlice";
 
 const FreshFruites = () => {
   const [grosary, setGrosary] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const { query } = useSearch();
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -33,7 +37,9 @@ const FreshFruites = () => {
 
     fetchData();
   }, []);
-
+  const filteredfruits = grosary.filter((item: any) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
   return (
     <div>
       <FruitesBanner />
@@ -49,7 +55,7 @@ const FreshFruites = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 mb-4 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {grosary.map((item: any) => (
+            {filteredfruits.map((item: any) => (
               <div
                 key={item._id}
                 className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full"
@@ -72,7 +78,10 @@ const FreshFruites = () => {
                 <p className="text-xs text-gray-500">Weight: {item.weight}</p>
 
                 <div className="text-center mx-auto mt-4">
-                  <button className="text-sm flex gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded">
+                  <button
+                    onClick={() => dispatch(addToCart(item))}
+                    className="text-sm flex gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded"
+                  >
                     <TiShoppingCart className="text-center text-xl  " />
                     Add to Bag
                   </button>

@@ -6,10 +6,13 @@ import React, { useEffect, useState } from "react";
 import Loading from "../loading";
 import Image from "next/image";
 import { TiShoppingCart } from "react-icons/ti";
+import { useSearch } from "@/context/SearchContext";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/app/redux/features/counter/counterSlice";
 
 const ITEMS_PER_PAGE = 8;
 
-const ProductCard = ({ item }: { item: any }) => (
+const ProductCard = ({ item, dispatch }: { item: any; dispatch: any }) => (
   <div className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full bg-white">
     <Image
       src={item.image}
@@ -25,7 +28,10 @@ const ProductCard = ({ item }: { item: any }) => (
     <p className="mt-1 font-bold text-black">৳{item.price}</p>
     <p className="text-xs text-gray-500">Weight: {item.weight}</p>
     <div className="text-center mx-auto mt-4">
-      <button className="text-sm flex gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded">
+      <button
+        onClick={() => dispatch(addToCart(item))}
+        className="text-sm flex gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded"
+      >
         <TiShoppingCart className="text-xl" />
         Add to Bag
       </button>
@@ -37,9 +43,9 @@ const AllFreshFruitsAndVegetable = () => {
   const [fruits, setFruits] = useState<any[]>([]);
   const [vegetables, setVegetables] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-
+  const { query } = useSearch();
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -66,7 +72,6 @@ const AllFreshFruitsAndVegetable = () => {
     fetchData();
   }, []);
 
-  // Fruits এবং Vegetables একসাথে মিশিয়ে pagination করার জন্য
   const combined = [...fruits, ...vegetables];
 
   const totalPages = Math.ceil(combined.length / ITEMS_PER_PAGE);
@@ -76,14 +81,18 @@ const AllFreshFruitsAndVegetable = () => {
 
   const currentItems = paginate(combined, currentPage);
 
-  // Pagination এর জন্য Fruits এবং Vegetables আলাদা দেখানোর জন্য ফিল্টার
   const currentFruits = currentItems.filter(
     (item) => item.category.toLowerCase() === "fruits"
   );
   const currentVegetables = currentItems.filter(
     (item) => item.category.toLowerCase() === "vegetables"
   );
-
+  const filterfruites = currentFruits.filter((item: any) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
+  const filtervegetables = currentVegetables.filter((item: any) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
   return (
     <div className="px-4 sm:px-8 py-6">
       <h1 className="text-2xl font-bold text-center mb-6">
@@ -101,8 +110,8 @@ const AllFreshFruitsAndVegetable = () => {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
             {currentFruits.length > 0 ? (
-              currentFruits.map((item) => (
-                <ProductCard key={item._id} item={item} />
+              filterfruites.map((item) => (
+                <ProductCard key={item._id} item={item} dispatch={dispatch} />
               ))
             ) : (
               <p className="text-center col-span-full text-gray-500">
@@ -116,8 +125,8 @@ const AllFreshFruitsAndVegetable = () => {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
             {currentVegetables.length > 0 ? (
-              currentVegetables.map((item) => (
-                <ProductCard key={item._id} item={item} />
+              filtervegetables.map((item) => (
+                <ProductCard key={item._id} item={item} dispatch={dispatch} />
               ))
             ) : (
               <p className="text-center col-span-full text-gray-500">
@@ -126,7 +135,6 @@ const AllFreshFruitsAndVegetable = () => {
             )}
           </div>
 
-          {/* Pagination Buttons */}
           {totalPages > 1 && (
             <div className="flex justify-center gap-2 mt-4">
               {Array.from({ length: totalPages }, (_, idx) => (

@@ -5,7 +5,6 @@ import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import publicAxios from "@/axiosInstance/publicaxios";
 import { TiShoppingCart } from "react-icons/ti";
-// Image imports
 import frutsvagitables from "../../user/allImages/benefits-of-vegetables-1Th.jpg";
 import meetandfish from "../../user/allImages/fishandmit.jpg";
 import cooking from "../../user/allImages/cooking.jpg";
@@ -20,6 +19,7 @@ import megi from "../../user/allImages/popularon/fresh.webp";
 import Loading from "../loading";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/app/redux/features/counter/counterSlice";
+import { useSearch } from "@/context/SearchContext";
 
 const categories = [
   {
@@ -53,6 +53,7 @@ export default function PopularCategory() {
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const { query } = useSearch();
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -90,6 +91,9 @@ export default function PopularCategory() {
     }
   }, [selectedCategory]);
 
+  const filterAllProduct = products.filter((item: any) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
   return (
     <div>
       <section className="py-10 px-4 md:px-8 lg:px-16">
@@ -145,7 +149,7 @@ export default function PopularCategory() {
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product, idx) => (
+          {filterAllProduct.map((product, idx) => (
             <div
               key={idx}
               className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full"

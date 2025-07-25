@@ -8,10 +8,12 @@ import Image from "next/image";
 import { TiShoppingCart } from "react-icons/ti";
 import Loading from "../loading";
 import CleaningBanner from "./cleaningBanner";
+import { useSearch } from "@/context/SearchContext";
 
 const CleaningProduct = () => {
   const [grosary, setGrosary] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { query } = useSearch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +36,9 @@ const CleaningProduct = () => {
 
     fetchData();
   }, []);
-
+  const filterCleaningProduct = grosary.filter((item: any) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
   return (
     <div>
       <div className="mt-4">
@@ -48,7 +52,7 @@ const CleaningProduct = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 mb-4 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {grosary.map((item: any) => (
+            {filterCleaningProduct.map((item: any) => (
               <div
                 key={item._id}
                 className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full"
