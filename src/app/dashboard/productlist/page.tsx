@@ -6,20 +6,22 @@ import toast from "react-hot-toast";
 
 import Link from "next/link";
 import Swal from "sweetalert2";
+import publicAxios from "@/axiosInstance/publicaxios";
+import Image from "next/image";
+import authAxiosInstance from "@/axiosInstance/authaxios";
 
 type Tuser = {
   _id: string;
   name: string;
-  email: string;
-  status: "active" | "inactive";
-  role: string;
-  isDeleted: boolean;
-  createdAt: string;
-  updatedAt: string;
+  category: string;
+  price: string;
+  image: string;
+  weight: string;
+  description: string;
 };
 
 const ProductList = () => {
-  const [users, setUsers] = useState<Tuser[]>([]);
+  const [products, setProduct] = useState<Tuser[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Pagination stateF
@@ -36,12 +38,8 @@ const ProductList = () => {
       }
 
       try {
-        const res = await axios.get("http://localhost:5000/api/v1/user", {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
-        setUsers(res.data.data);
+        const res = await publicAxios.get("/grosary-product");
+        setProduct(res.data.data);
       } catch (error) {
         console.error("Error fetching users:", error);
         toast.error("Failed to fetch users");
@@ -54,12 +52,17 @@ const ProductList = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading users...</p>;
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="relative w-12 h-12">
+          <div className="absolute inset-0 rounded-full border-4 border-t-transparent border-blue-500 animate-spin"></div>
+        </div>
+      </div>
+    );
   }
 
-  // Calculate pagination
-  const totalPages = Math.ceil(users.length / itemsPerPage);
-  const currentUsers = users.slice(
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const currentUsers = products.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -83,18 +86,11 @@ const ProductList = () => {
       }
 
       try {
-        const res = await axios.delete(
-          `http://localhost:5000/api/v1/user/${_id}`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        const res = await authAxiosInstance.delete(`/grosary-product/${_id}`);
 
         if (res.status === 200 || res.status === 204) {
           Swal.fire("Deleted!", "User has been deleted.", "success");
-          setUsers((previousUser) =>
+          setProduct((previousUser) =>
             previousUser.filter((user) => user._id !== _id)
           );
 
@@ -116,36 +112,45 @@ const ProductList = () => {
 
   return (
     <div className="p-4 mx-auto items-center min-h-screen max-w-6xl">
-      <h1 className="text-xl font-bold mb-4 text-center">Total Users</h1>
+      <h1 className="text-xl font-bold mb-4 text-center">All Product</h1>
 
       <div className="overflow-x-auto rounded-lg shadow-md">
         <table className="min-w-full table-auto border-collapse bg-white">
           <thead>
             <tr className="bg-gray-100 text-left text-gray-600 uppercase text-sm">
               <th className="border-b px-6 py-3">#</th>
+              <th className="border-b px-6 py-3">Image</th>
               <th className="border-b px-6 py-3">Name</th>
-              <th className="border-b px-6 py-3">Email</th>
-              <th className="border-b px-6 py-3">Role</th>
-              <th className="border-b px-6 py-3">Status</th>
+              <th className="border-b px-6 py-3">category</th>
+              <th className="border-b px-6 py-3">Price</th>
+              <th className="border-b px-6 py-3">weaight</th>
               <th className="border-b px-6 py-3 text-center">Update</th>
               <th className="border-b px-6 py-3 text-center">Delete</th>
             </tr>
           </thead>
           <tbody>
-            {currentUsers.map((user, index) => (
+            {currentUsers.map((product, index) => (
               <tr
-                key={user._id}
+                key={product._id}
                 className="hover:bg-gray-50 transition duration-200"
               >
                 <td className="border-t px-6 py-4">
                   {(currentPage - 1) * itemsPerPage + index + 1}
                 </td>
-                <td className="border-t px-6 py-4">{user.name}</td>
-                <td className="border-t px-6 py-4">{user.email}</td>
-                <td className="border-t px-6 py-4">{user.role}</td>
-                <td className="border-t px-6 py-4 capitalize">{user.status}</td>
+
+                <td className="border-t px-6 py-4">
+                  <Image src={product.image} alt="" height={40} width={40} />
+                </td>
+                <td className="border-t px-6 py-4">{product.name}</td>
+                <td className="border-t px-6 py-4">{product.category}</td>
+                <td className="border-t px-6 py-4">{product.price}</td>
+                <td className="border-t px-6 py-4 capitalize">
+                  {product.weight}
+                </td>
                 <td className="border-t px-6 py-4 text-center">
-                  <Link href={`/dashboard/updateuser/${user._id}`}>
+                  <Link
+                    href={`/dashboard/productlist/updateproduct/${product._id}`}
+                  >
                     <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
                       Update
                     </button>
@@ -153,7 +158,7 @@ const ProductList = () => {
                 </td>
                 <td className="border-t px-6 py-4 text-center">
                   <button
-                    onClick={() => handleDelete(user._id)}
+                    onClick={() => handleDelete(product._id)}
                     className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition"
                   >
                     Delete

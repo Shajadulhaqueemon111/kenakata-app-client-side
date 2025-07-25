@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sidebar";
 import {
   Carrot,
+  Contact,
   CookingPot,
   Fish,
   Grape,
@@ -17,6 +18,7 @@ import {
   Inbox,
   LucideBrushCleaning,
 } from "lucide-react";
+import { FcFeedback } from "react-icons/fc";
 
 const items = [
   { title: "Home", url: "/user", icon: Home },
@@ -37,6 +39,16 @@ const items = [
     title: "Cleaning Product",
     url: "/user/CleaningProduct",
     icon: LucideBrushCleaning,
+  },
+  {
+    title: "Contact",
+    url: "/user/contact",
+    icon: Contact,
+  },
+  {
+    title: "Feed Back",
+    url: "/user/feedback",
+    icon: FcFeedback,
   },
 ];
 

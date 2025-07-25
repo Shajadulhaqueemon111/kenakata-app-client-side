@@ -15,6 +15,7 @@ import {
 } from "@/app/redux/features/counter/counterSlice";
 import { RootState } from "@/app/redux/store";
 import Link from "next/link";
+import Loading from "../../loading";
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
@@ -61,7 +62,12 @@ export default function ProductDetailsPage() {
   const commission = basePrice * COMMISSION_RATE;
   const total = basePrice + tax + commission;
 
-  if (loading) return <p className="text-center">Loading...</p>;
+  if (loading)
+    return (
+      <div className="text-center">
+        <Loading />
+      </div>
+    );
   if (!product) return <p className="text-center text-red-500">Not Found</p>;
 
   return (
