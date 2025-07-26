@@ -24,6 +24,7 @@ export async function middleware(request: NextRequest) {
   if (token) {
     try {
       const secret = new TextEncoder().encode(JWT_SECRET);
+
       const { payload } = await jwtVerify(token, secret);
       isLoggedIn = true;
       role = (payload as any).role;
@@ -53,5 +54,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/register", "/dashboard/:path*", "/profile/:path*"],
+  matcher: ["/", "/login", "/register", "/dashboard/:path*"],
 };

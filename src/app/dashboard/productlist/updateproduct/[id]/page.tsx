@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import authAxiosInstance from "@/axiosInstance/authaxios";
-import publicAxios from "@/axiosInstance/publicaxios";
+import Image from "next/image";
 
 type Tproduct = {
   _id: string;
@@ -24,8 +22,8 @@ const UpdateProductPage = () => {
 
   const [product, setProduct] = useState<Tproduct | null>(null);
   const [loading, setLoading] = useState(true);
-  const [formData, setFormData] = useState<Omit<Tproduct, "image">>({
-    _id: "",
+  const [submitting, setSubmitting] = useState(false);
+  const [formData, setFormData] = useState<Omit<Tproduct, "image" | "_id">>({
     name: "",
     category: "",
     price: "",
@@ -35,19 +33,26 @@ const UpdateProductPage = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  // Fetch product
+  // Fetch product details on mount or id change
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const token = localStorage.getItem("accessToken");
-        if (!token) return toast.error("No access token found");
-
-        const res = await publicAxios.get(`/grosary-product/${id}`);
+        if (!id) {
+          toast.error("Product ID is missing");
+          setLoading(false);
+          return;
+        }
+        const res = await authAxiosInstance.get(`/grosary-product/${id}`);
         const fetchedProduct = res.data?.data;
+
+        if (!fetchedProduct) {
+          toast.error("Product not found");
+          setLoading(false);
+          return;
+        }
 
         setProduct(fetchedProduct);
         setFormData({
-          _id: fetchedProduct._id,
           name: fetchedProduct.name,
           category: fetchedProduct.category,
           price: fetchedProduct.price,
@@ -55,15 +60,14 @@ const UpdateProductPage = () => {
           description: fetchedProduct.description,
         });
       } catch (error) {
+        console.log(error);
         toast.error("Failed to load product");
       } finally {
         setLoading(false);
       }
     };
 
-    if (id) {
-      fetchProduct();
-    }
+    fetchProduct();
   }, [id]);
 
   const handleChange = (
@@ -100,6 +104,8 @@ const UpdateProductPage = () => {
     e.preventDefault();
     if (!validate()) return;
 
+    setSubmitting(true);
+
     const data = new FormData();
     data.append("name", formData.name);
     data.append("category", formData.category);
@@ -117,10 +123,13 @@ const UpdateProductPage = () => {
     } catch (error) {
       console.error("Update failed:", error);
       toast.error("Product update failed");
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  if (loading) return <div className="text-center py-10">Loading...</div>;
+  if (loading)
+    return <div className="text-center py-10">Loading product details...</div>;
   if (!product)
     return <div className="text-center py-10">Product not found</div>;
 
@@ -129,6 +138,7 @@ const UpdateProductPage = () => {
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-4xl bg-white p-6 md:p-8 rounded-xl shadow-md"
+        encType="multipart/form-data"
       >
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
           Update Product
@@ -191,10 +201,24 @@ const UpdateProductPage = () => {
           )}
         </div>
 
-        {/* Image Upload */}
+        {/* Existing Image Preview */}
+        {product.image && !imageFile && (
+          <div className="mb-4">
+            <label className="block mb-1 font-semibold">Current Image</label>
+            <Image
+              src={product.image}
+              alt={product.name}
+              height={30}
+              width={30}
+              className="w-40 h-40 object-cover rounded"
+            />
+          </div>
+        )}
+
+        {/* New Image Upload */}
         <div className="mb-6">
           <label className="block mb-1 font-semibold" htmlFor="image">
-            Image
+            Upload New Image
           </label>
           <input
             type="file"
@@ -213,16 +237,18 @@ const UpdateProductPage = () => {
 
         <button
           type="submit"
-          className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded font-semibold transition"
+          disabled={submitting}
+          className={`w-full ${
+            submitting ? "bg-gray-400" : "bg-green-600 hover:bg-green-700"
+          } text-white py-2 rounded font-semibold transition`}
         >
-          Update Product
+          {submitting ? "Updating..." : "Update Product"}
         </button>
       </form>
     </div>
   );
 };
 
-// Reusable Form Group component
 const FormGroup = ({
   label,
   name,
@@ -234,7 +260,11 @@ const FormGroup = ({
   label: string;
   name: string;
   value: string;
-  onChange: (e: React.ChangeEvent<any>) => void;
+  onChange: (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => void;
   error?: string;
   type?: string;
 }) => (

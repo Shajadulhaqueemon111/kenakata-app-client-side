@@ -111,8 +111,10 @@ const TotalUser = () => {
   };
 
   return (
-    <div className="p-4 mx-auto items-center min-h-screen max-w-6xl">
-      <h1 className="text-xl font-bold mb-4 text-center">Total Users</h1>
+    <div className="p-4 mx-auto items-center min-h-screen max-w-6xl mt-6">
+      <h1 className="text-xl font-bold mb-4 text-center mt-4 text-black">
+        Total Users
+      </h1>
 
       <div className="overflow-x-auto rounded-lg shadow-md">
         <table className="min-w-full table-auto border-collapse bg-white">

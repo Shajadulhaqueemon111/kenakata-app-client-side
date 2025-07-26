@@ -40,15 +40,16 @@
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/section-cards";
-import { SiteHeader } from "@/components/site-header";
+
 import data from "./data.json";
+import { AppSidebar } from "@/components/app-sidebar";
 
 export default function Page() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
-      <SiteHeader />
 
+      <AppSidebar />
       {/* Main content */}
       <main className="flex-1 flex flex-col gap-4 p-4 md:p-6 lg:p-8">
         <SectionCards />

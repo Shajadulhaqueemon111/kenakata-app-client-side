@@ -2,9 +2,6 @@ import axios from "axios";
 
 const authAxiosInstance = axios.create({
   baseURL: "http://localhost:5000/api/v1",
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 authAxiosInstance.interceptors.request.use(

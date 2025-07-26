@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import toast from "react-hot-toast";
 
 import Link from "next/link";
@@ -89,12 +89,11 @@ const ProductList = () => {
         const res = await authAxiosInstance.delete(`/grosary-product/${_id}`);
 
         if (res.status === 200 || res.status === 204) {
-          Swal.fire("Deleted!", "User has been deleted.", "success");
+          Swal.fire("Deleted!", "Product has been deleted.", "success");
           setProduct((previousUser) =>
             previousUser.filter((user) => user._id !== _id)
           );
 
-          // Optional: If current page becomes empty after deletion, go back a page
           if (currentUsers.length === 1 && currentPage > 1) {
             setCurrentPage(currentPage - 1);
           }
@@ -103,7 +102,7 @@ const ProductList = () => {
         }
       } catch (err) {
         console.error(err);
-        toast.error("User deletion failed!");
+        toast.error("Product deletion failed!");
       }
     } else {
       toast("Delete action cancelled.");
@@ -111,7 +110,7 @@ const ProductList = () => {
   };
 
   return (
-    <div className="p-4 mx-auto items-center min-h-screen max-w-6xl">
+    <div className="p-4 mt-8 mx-auto items-center min-h-screen sm:max-w-full md:max-w-4xl lg:max-w-6xl">
       <h1 className="text-xl font-bold mb-4 text-center">All Product</h1>
 
       <div className="overflow-x-auto rounded-lg shadow-md">

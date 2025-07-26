@@ -57,13 +57,18 @@ const data = {
     },
     {
       title: "View all orders",
-      url: "/allOrders",
+      url: "/dashboard/viewallorders",
       icon: IconFolder,
     },
     {
       title: "Download invoice",
-      url: "/invoice",
+      url: "/invoice/dashboard",
       icon: IconListDetails,
+    },
+    {
+      title: "Create Product",
+      url: "/dashboard/createproduct",
+      icon: IconCamera,
     },
   ],
   navClouds: [
@@ -83,54 +88,54 @@ const data = {
         },
       ],
     },
-    {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: IconFileAi,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
+    // {
+    //   title: "Proposal",
+    //   icon: IconFileDescription,
+    //   url: "#",
+    //   items: [
+    //     {
+    //       title: "Active Proposals",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Archived",
+    //       url: "#",
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: "Prompts",
+    //   icon: IconFileAi,
+    //   url: "#",
+    //   items: [
+    //     {
+    //       title: "Active Proposals",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Archived",
+    //       url: "#",
+    //     },
+    //   ],
+    // },
   ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: IconSettings,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
-    },
-  ],
+  // navSecondary: [
+  //   {
+  //     title: "Settings",
+  //     url: "#",
+  //     icon: IconSettings,
+  //   },
+  //   {
+  //     title: "Get Help",
+  //     url: "#",
+  //     icon: IconHelp,
+  //   },
+  //   {
+  //     title: "Search",
+  //     url: "#",
+  //     icon: IconSearch,
+  //   },
+  // ],
   documents: [
     {
       name: "Data Library",
@@ -162,7 +167,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <a href="#">
                 <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+                <span className="text-base font-semibold mt-4">Acme Inc.</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -171,7 +176,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

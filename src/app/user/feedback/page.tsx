@@ -63,7 +63,7 @@ const FeedbackForm = () => {
   if (!isMounted) return null;
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white shadow rounded-lg">
+    <div className="max-w-xl mx-auto p-6 bg-white shadow rounded-lg text-black">
       <h2 className="text-2xl font-semibold mb-4 text-center">
         Give Your Feedback
       </h2>
