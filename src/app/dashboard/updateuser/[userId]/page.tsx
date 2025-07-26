@@ -38,7 +38,7 @@ const UpdateUserPage = () => {
         if (!token) return toast.error("No access token found");
 
         const res = await axios.get(
-          `http://localhost:5000/api/v1/user/${userId}`,
+          `https://kenakata-server-side.vercel.app /api/v1/user/${userId}`,
           {
             headers: {
               Authorization: `${token}`,
@@ -109,12 +109,16 @@ const UpdateUserPage = () => {
 
     try {
       const token = localStorage.getItem("accessToken") || "";
-      await axios.patch(`http://localhost:5000/api/v1/user/${userId}`, data, {
-        headers: {
-          Authorization: `${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.patch(
+        `https://kenakata-server-side.vercel.app /api/v1/user/${userId}`,
+        data,
+        {
+          headers: {
+            Authorization: `${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       toast.success("User updated successfully");
       router.push("/dashboard/totalusers");
     } catch (error) {

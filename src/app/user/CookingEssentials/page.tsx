@@ -9,11 +9,14 @@ import { TiShoppingCart } from "react-icons/ti";
 import Loading from "../loading";
 import CookingBanner from "./cookingBanner";
 import { useSearch } from "@/context/SearchContext";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/app/redux/features/counter/counterSlice";
 
 const CookingAndEssentialsProduct = () => {
   const [grosary, setGrosary] = useState([]);
   const [loading, setLoading] = useState(false);
   const { query } = useSearch();
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -74,7 +77,10 @@ const CookingAndEssentialsProduct = () => {
                 <p className="text-xs text-gray-500">Weight: {item.weight}</p>
 
                 <div className="text-center mx-auto mt-4">
-                  <button className="text-sm flex gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded">
+                  <button
+                    onClick={() => dispatch(addToCart(item))}
+                    className="text-sm flex gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded"
+                  >
                     <TiShoppingCart className="text-center text-xl  " />
                     Add to Bag
                   </button>

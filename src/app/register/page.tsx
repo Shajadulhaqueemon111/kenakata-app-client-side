@@ -40,7 +40,7 @@ const RegisterPage = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/v1/user/create-user",
+        "https://kenakata-server-side.vercel.app/api/v1/user/create-user",
         formData,
         {
           headers: {

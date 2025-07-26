@@ -1,13 +1,16 @@
 "use client";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
 import { useEffect, useState } from "react";
+import publicAxios from "@/axiosInstance/publicaxios";
+import toast from "react-hot-toast";
+import { clearCart } from "@/app/redux/features/counter/counterSlice";
 
 export default function CheckoutPage() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const [mounted, setMounted] = useState(false);
-
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -34,18 +37,35 @@ export default function CheckoutPage() {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const handleCheckout = () => {
-    // Here, you can send userData + cartItems to backend API
-    console.log("Checkout Info:", {
+  const handleCheckout = async () => {
+    const payload = {
       ...userData,
       cartItems,
       totalAmount: finalTotal,
-    });
-    alert("Order placed successfully!");
+    };
+
+    console.log("Sending Payload:", payload);
+
+    try {
+      const response = await publicAxios.post("/order/create", payload);
+      const data = response.data;
+
+      if (data?.success && data?.data?.payment_url) {
+        toast.success("Redirecting to payment...");
+
+        dispatch(clearCart());
+        window.location.href = data.data.payment_url;
+      } else {
+        toast.error("Payment URL not found!");
+      }
+    } catch (err) {
+      console.error("Checkout Error:", err);
+      toast.error("Something went wrong. Please try again.");
+    }
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="max-w-6xl mx-auto px-4 text-black py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Billing Form */}
       <div className="bg-white p-6 rounded shadow">
         <h2 className="text-2xl font-bold mb-4 text-black">Billing Details</h2>

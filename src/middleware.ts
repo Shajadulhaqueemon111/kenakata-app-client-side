@@ -6,7 +6,7 @@ import { jwtVerify } from "jose";
 const publicPaths = ["/", "/login", "/register"];
 const protectedPaths = ["/dashboard", "/profile"];
 
-const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_ACCESS_SECRET!;
+const JWT_SECRET = process.env.JWT_ACCESS_SECRET!;
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("accessToken")?.value;
@@ -54,5 +54,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/login", "/register", "/dashboard/:path*"],
+  matcher: ["/", "/checkout", "/login", "/register", "/dashboard/:path*"],
 };

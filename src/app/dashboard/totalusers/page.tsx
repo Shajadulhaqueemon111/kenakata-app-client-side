@@ -80,7 +80,7 @@ const TotalUser = () => {
 
       try {
         const res = await axios.delete(
-          `http://localhost:5000/api/v1/user/${_id}`,
+          `https://kenakata-server-side.vercel.app /api/v1/user/${_id}`,
           {
             headers: {
               Authorization: `${token}`,

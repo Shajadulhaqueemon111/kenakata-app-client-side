@@ -100,13 +100,13 @@ const FloatingCart = () => {
                 </div>
 
                 <div className="flex justify-between items-center">
-                  <Link
+                  {/* <Link
                     href={`/user/viewdetails/${item._id}`}
                     className="text-blue-500 hover:underline text-sm"
                     onClick={() => setIsOpen(false)}
                   >
                     View Details
-                  </Link>
+                  </Link> */}
 
                   <button
                     onClick={() => dispatch(removeFromCart(item._id))}

@@ -60,65 +60,65 @@ const data = {
       url: "/dashboard/viewallorders",
       icon: IconFolder,
     },
-    {
-      title: "Download invoice",
-      url: "/invoice/dashboard",
-      icon: IconListDetails,
-    },
+    // {
+    //   title: "Download invoice",
+    //   url: "/invoice/dashboard",
+    //   icon: IconListDetails,
+    // },
     {
       title: "Create Product",
       url: "/dashboard/createproduct",
       icon: IconCamera,
     },
   ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    // {
-    //   title: "Proposal",
-    //   icon: IconFileDescription,
-    //   url: "#",
-    //   items: [
-    //     {
-    //       title: "Active Proposals",
-    //       url: "#",
-    //     },
-    //     {
-    //       title: "Archived",
-    //       url: "#",
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: "Prompts",
-    //   icon: IconFileAi,
-    //   url: "#",
-    //   items: [
-    //     {
-    //       title: "Active Proposals",
-    //       url: "#",
-    //     },
-    //     {
-    //       title: "Archived",
-    //       url: "#",
-    //     },
-    //   ],
-    // },
-  ],
+  // navClouds: [
+  //   {
+  //     title: "Capture",
+  //     icon: IconCamera,
+  //     isActive: true,
+  //     url: "#",
+  //     items: [
+  //       {
+  //         title: "Active Proposals",
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Archived",
+  //         url: "#",
+  //       },
+  //     ],
+  //   },
+  //   // {
+  //   //   title: "Proposal",
+  //   //   icon: IconFileDescription,
+  //   //   url: "#",
+  //   //   items: [
+  //   //     {
+  //   //       title: "Active Proposals",
+  //   //       url: "#",
+  //   //     },
+  //   //     {
+  //   //       title: "Archived",
+  //   //       url: "#",
+  //   //     },
+  //   //   ],
+  //   // },
+  //   // {
+  //   //   title: "Prompts",
+  //   //   icon: IconFileAi,
+  //   //   url: "#",
+  //   //   items: [
+  //   //     {
+  //   //       title: "Active Proposals",
+  //   //       url: "#",
+  //   //     },
+  //   //     {
+  //   //       title: "Archived",
+  //   //       url: "#",
+  //   //     },
+  //   //   ],
+  //   // },
+  // ],
   // navSecondary: [
   //   {
   //     title: "Settings",
@@ -136,23 +136,23 @@ const data = {
   //     icon: IconSearch,
   //   },
   // ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
-    },
-  ],
+  // documents: [
+  //   {
+  //     name: "Data Library",
+  //     url: "#",
+  //     icon: IconDatabase,
+  //   },
+  //   {
+  //     name: "Reports",
+  //     url: "#",
+  //     icon: IconReport,
+  //   },
+  //   {
+  //     name: "Word Assistant",
+  //     url: "#",
+  //     icon: IconFileWord,
+  //   },
+  // ],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -175,7 +175,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
+        {/* <NavDocuments items={data.documents} /> */}
         {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       <SidebarFooter>

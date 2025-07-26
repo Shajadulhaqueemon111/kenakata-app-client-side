@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const authAxiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
+  baseURL: "https://kenakata-server-side.vercel.app/api/v1",
+  withCredentials: true,
 });
 
 authAxiosInstance.interceptors.request.use(

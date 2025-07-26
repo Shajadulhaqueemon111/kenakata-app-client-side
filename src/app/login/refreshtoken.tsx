@@ -8,10 +8,13 @@ export const refreshAccessToken = async (
   setUser: (user: any | null) => void
 ): Promise<boolean> => {
   try {
-    const res = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
-      method: "POST",
-      credentials: "include",
-    });
+    const res = await fetch(
+      "https://kenakata-server-side.vercel.app /api/v1/auth/refresh-token",
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
 
     if (res.ok) {
       const data = await res.json();

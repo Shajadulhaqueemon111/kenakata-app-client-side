@@ -38,12 +38,15 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "https://kenakata-server-side.vercel.app/api/v1/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       if (!response.ok) {
         const err = await response.json();
