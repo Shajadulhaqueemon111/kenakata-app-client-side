@@ -1,26 +1,27 @@
 "use client";
+
 import { CarIcon, HandCoins, ShoppingBag } from "lucide-react";
 import { GiTakeMyMoney } from "react-icons/gi";
 import React from "react";
 
 const features = [
   {
-    icon: <ShoppingBag className="w-6 h-6 text-red-500" />,
+    icon: <ShoppingBag className="w-8 h-8 text-red-500" />,
     title: "+15,000 products",
     description: "to shop from",
   },
   {
-    icon: <HandCoins className="w-6 h-6 text-green-600" />,
+    icon: <HandCoins className="w-8 h-8 text-green-600" />,
     title: "Pay after delivery",
     description: "Pay only after receiving products",
   },
   {
-    icon: <CarIcon className="w-6 h-6 text-blue-600" />,
+    icon: <CarIcon className="w-8 h-8 text-blue-600" />,
     title: "Super fast delivery",
     description: "Get your delivery within 1 hour",
   },
   {
-    icon: <GiTakeMyMoney className="w-6 h-6 text-purple-600" />,
+    icon: <GiTakeMyMoney className="w-8 h-8 text-purple-600" />,
     title: "Exciting Offers",
     description: "Get offers that save money",
   },
@@ -28,22 +29,24 @@ const features = [
 
 const SecondBanner = () => {
   return (
-    <div className="px-4 py-10 bg-amber-50">
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+    <div className="px-4 sm:px-6 md:px-8 py-10 bg-amber-50">
+      <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-gray-800">
         Why Shop with <span className="text-red-500">Kenakata?</span>
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {features.map((item, idx) => (
           <div
             key={idx}
-            className="flex items-center gap-4 p-6 bg-white shadow rounded-lg transition hover:shadow-md"
+            className="flex items-start gap-4 p-4 sm:p-6 bg-white shadow rounded-lg hover:shadow-md transition"
           >
             <div className="flex-shrink-0">{item.icon}</div>
             <div>
-              <h4 className="text-lg font-semibold text-gray-800">
+              <h4 className="text-base sm:text-lg font-semibold text-gray-800">
                 {item.title}
               </h4>
-              <p className="text-sm text-gray-600">{item.description}</p>
+              <p className="text-sm sm:text-base text-gray-600">
+                {item.description}
+              </p>
             </div>
           </div>
         ))}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -5,11 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../authcontext/context";
 import { jwtDecode } from "jwt-decode";
+import { signIn } from "next-auth/react";
+import publicAxios from "@/axiosInstance/publicaxios";
 
 interface DecodedToken {
   email?: string;
@@ -38,23 +41,12 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await fetch(
-        "https://kenakata-server-side.vercel.app/api/v1/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await publicAxios.post("/auth/login", {
+        email,
+        password,
+      });
 
-      if (!response.ok) {
-        const err = await response.json();
-        toast.error(err.message || "Login failed");
-        return;
-      }
-
-      const data = await response.json();
+      const data = response.data;
       toast.success("Logged in successfully!");
 
       const token = data.data?.accessToken;
@@ -63,10 +55,8 @@ const LoginPage = () => {
         return;
       }
 
-      // Store token
       localStorage.setItem("accessToken", token);
 
-      // Decode token (if needed)
       const decoded = jwtDecode<DecodedToken>(token);
       const user = {
         email: decoded.email || data.data.email,
@@ -74,14 +64,14 @@ const LoginPage = () => {
         profileImage: decoded.profileImage || data.data.profileImage,
         exp: decoded.exp || data.data.exp,
       };
-      console.log("hi my name emon", user);
       setUser(user);
       localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-      router.push(user.role === "admin" ? "/dashboard" : "/");
-    } catch (error) {
+      router.push(user.role?.toLowerCase() === "admin" ? "/dashboard" : "/");
+    } catch (error: any) {
       console.error("Login error:", error);
-      toast.error("Something went wrong");
+      toast.error(
+        error.response?.data?.message || "Login failed. Try again later."
+      );
     }
   };
 

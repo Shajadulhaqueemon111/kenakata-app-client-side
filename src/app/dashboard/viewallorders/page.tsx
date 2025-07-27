@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
 import React, { useEffect, useState } from "react";
-
 import { Button } from "@/components/ui/button";
 import { MdDelete, MdEdit, MdPrint } from "react-icons/md";
 import moment from "moment";
@@ -11,6 +9,7 @@ import authAxiosInstance from "@/axiosInstance/authaxios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import Link from "next/link";
+
 export type TOrderProduct = {
   _id: string;
   name: string;
@@ -21,22 +20,29 @@ export type TOrderProduct = {
   image?: string;
   quantity: number;
 };
+
 const ViewAllOrders = () => {
   const [orders, setOrders] = useState<TOrderProduct[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const pageSize = 10;
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const response = await authAxiosInstance.get(
-          "/order/get-all-order-details"
+          `/order/get-all-order-details?page=${currentPage}&limit=${pageSize}`
         );
+
         setOrders(response.data.data);
+        setTotalPages(response.data.totalPages || 1);
       } catch (error) {
         console.error("Failed to fetch orders:", error);
       }
     };
     fetchOrders();
-  }, []);
+  }, [currentPage]);
+
   const handleDelete = async (_id: string) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -63,12 +69,12 @@ const ViewAllOrders = () => {
         });
 
         if (res.status === 200 || res.status === 204) {
-          Swal.fire("Deleted!", "User has been deleted.", "success");
-          setOrders((previousUser) =>
-            previousUser.filter((user) => user._id !== _id)
+          Swal.fire("Deleted!", "Order has been deleted.", "success");
+          setOrders((prevOrders) =>
+            prevOrders.filter((order) => order._id !== _id)
           );
         } else {
-          toast.error("Failed to delete user.");
+          toast.error("Failed to delete order.");
         }
       } catch (err) {
         console.error(err);
@@ -78,6 +84,12 @@ const ViewAllOrders = () => {
       toast("Delete action cancelled.");
     }
   };
+
+  const goToPage = (page: number) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+  };
+
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 mt-6">
@@ -188,6 +200,25 @@ const ViewAllOrders = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Pagination controls */}
+      <div className="flex justify-center mt-6 space-x-4">
+        <Button
+          disabled={currentPage === 1}
+          onClick={() => goToPage(currentPage - 1)}
+        >
+          Previous
+        </Button>
+        <span className="px-4 py-2 bg-white border rounded">
+          Page {currentPage} of {totalPages}
+        </span>
+        <Button
+          disabled={currentPage === totalPages}
+          onClick={() => goToPage(currentPage + 1)}
+        >
+          Next
+        </Button>
       </div>
     </div>
   );

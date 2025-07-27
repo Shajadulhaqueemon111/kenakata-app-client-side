@@ -20,4 +20,5 @@ export const authOptions: AuthOptions = {
       return `${baseUrl}/user`;
     },
   },
+  debug: false,
 };

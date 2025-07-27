@@ -18,8 +18,7 @@ export default function Navbar() {
   const { query, setQuery } = useSearch();
   const { data: session, status } = useSession();
   const { user: customUser, logout: customLogOut } = useAuth();
-  console.log("customUser:", customUser);
-  console.log("customUser?.profileImage:", customUser?.profileImage);
+
   const router = useRouter();
   useEffect(() => {
     setHasMounted(true);

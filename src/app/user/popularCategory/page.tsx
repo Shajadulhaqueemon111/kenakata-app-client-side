@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
@@ -54,6 +55,7 @@ export default function PopularCategory() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { query } = useSearch();
+
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -66,7 +68,6 @@ export default function PopularCategory() {
 
         const filteredData = productArray.filter((p: { category: string }) => {
           const prodCat = p.category.toLowerCase().replace(/\s/g, "");
-          console.log("prodCat:", prodCat);
 
           if (selected === "meat&fish") {
             return prodCat === "meat" || prodCat === "fish";
@@ -94,13 +95,15 @@ export default function PopularCategory() {
   const filterAllProduct = products.filter((item: any) =>
     item.name.toLowerCase().includes(query.toLowerCase())
   );
+
   return (
     <div>
+      {/* Category Section */}
       <section className="py-10 px-4 md:px-8 lg:px-16">
         <h2 className="text-xl font-semibold mb-8 text-center text-gray-800">
           Popular Categories
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {categories.map((category, index) => (
             <div
               key={index}
@@ -113,7 +116,7 @@ export default function PopularCategory() {
                   : ""
               }`}
             >
-              <div className="w-28 h-28 rounded-md overflow-hidden mb-4 border border-gray-200">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-md overflow-hidden mb-4 border border-gray-200">
                 <Image
                   src={category.image}
                   alt={category.name}
@@ -130,7 +133,7 @@ export default function PopularCategory() {
         </div>
       </section>
 
-      {/* Product Cards */}
+      {/* Product Section */}
       <section className="py-10 px-4 md:px-8 lg:px-16">
         <h2 className="text-xl font-semibold mb-8 text-center text-gray-800">
           {selectedCategory
@@ -140,7 +143,7 @@ export default function PopularCategory() {
 
         {loading && (
           <div className="text-center text-gray-500">
-            <Loading></Loading>{" "}
+            <Loading />
           </div>
         )}
 
@@ -148,23 +151,22 @@ export default function PopularCategory() {
           <p className="text-center text-gray-500">No products found.</p>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {filterAllProduct.map((product, idx) => (
             <div
               key={idx}
-              className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full"
+              className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full bg-white"
             >
               <Image
                 src={product.image}
                 alt={product.name}
                 width={300}
                 height={200}
-                className="w-full h-[200px] object-cover rounded"
+                className="w-full h-[180px] sm:h-[200px] object-cover rounded"
               />
 
               <h3 className="font-semibold mt-2 text-black">{product.name}</h3>
 
-              {/* Fixed height for description to prevent layout shift */}
               <p className="text-sm text-gray-600 h-[48px] overflow-hidden">
                 {product.description}
               </p>
@@ -172,12 +174,12 @@ export default function PopularCategory() {
               <p className="mt-1 font-bold text-black">৳{product.price}</p>
               <p className="text-xs text-gray-500">Weight: {product.weight}</p>
 
-              <div className="text-center mx-auto mt-4">
+              <div className="text-center mx-auto mt-4 w-full">
                 <button
                   onClick={() => dispatch(addToCart(product))}
-                  className="text-sm flex gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded"
+                  className="text-sm flex items-center justify-center gap-2 font-semibold text-red-500 py-2 px-3 w-full border border-red-300 rounded hover:bg-red-50 transition"
                 >
-                  <TiShoppingCart className="text-center text-xl  " />
+                  <TiShoppingCart className="text-lg" />
                   Add to Bag
                 </button>
               </div>
@@ -187,22 +189,23 @@ export default function PopularCategory() {
       </section>
 
       {/* Brand Marquee */}
-      <div>
-        <h1 className="text-xl font-bold text-center mt-4 text-black">
+      <div className="mt-10 px-4">
+        <h1 className="text-xl font-bold text-center text-black">
           Popular On Kenakata
         </h1>
         <Marquee>
-          <div className="flex flex-wrap justify-center gap-6 px-4 sm:justify-evenly sm:gap-8 mt-4">
+          <div className="flex items-center gap-6 px-4 py-4">
             {[pran, rekit, nestle, unilivers, godrej, cokakola, megi].map(
               (img, idx) => (
-                <Image
-                  key={idx}
-                  src={img}
-                  alt={`brand-${idx}`}
-                  height={80}
-                  width={80}
-                  className="object-contain"
-                />
+                <div key={idx} className="flex-shrink-0">
+                  <Image
+                    src={img}
+                    alt={`brand-${idx}`}
+                    height={60}
+                    width={60}
+                    className="object-contain sm:h-[70px] sm:w-[70px]"
+                  />
+                </div>
               )
             )}
           </div>
