@@ -13,7 +13,7 @@ import { useSearch } from "@/context/SearchContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  // const [searchTerm, setSearchTerm] = useState("");
+
   const [hasMounted, setHasMounted] = useState(false);
   const { query, setQuery } = useSearch();
   const { data: session, status } = useSession();
@@ -44,9 +44,11 @@ export default function Navbar() {
     <nav className="bg-white shadow-md px-4 py-3 w-full fixed top-0 left-0 z-50">
       <div className="container mx-auto flex items-center justify-between">
         <div className="text-2xl font-bold text-primary text-linear-to-bl from-violet-500 to-fuchsia-500">
-          <h1 className="text-xl font-bold text-red-600">
-            Kena<span className="text-green-600 text-xl">kata</span>
-          </h1>
+          <Link href="/">
+            <h1 className="text-xl font-bold text-red-600">
+              Kena<span className="text-green-600 text-xl">kata</span>
+            </h1>
+          </Link>
         </div>
 
         <div className="hidden md:flex flex-1 mx-6 max-w-xl">

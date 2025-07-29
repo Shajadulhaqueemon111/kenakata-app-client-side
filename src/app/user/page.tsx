@@ -1,10 +1,11 @@
 import React from "react";
-import BannerPage from "./banner/page";
+
+import AllRoutePage from "./allroutePage/page";
 
 const HomePage = () => {
   return (
     <div>
-      <BannerPage />
+      <AllRoutePage />
     </div>
   );
 };

@@ -29,15 +29,15 @@ const features = [
 
 const SecondBanner = () => {
   return (
-    <div className="px-4 sm:px-6 md:px-8 py-10 bg-amber-50">
-      <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-gray-800">
+    <div className="px-4 sm:px-6 md:px-8 py-8 sm:py-10 bg-amber-50">
+      <h2 className="text-xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 text-gray-800">
         Why Shop with <span className="text-red-500">Kenakata?</span>
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {features.map((item, idx) => (
           <div
             key={idx}
-            className="flex items-start gap-4 p-4 sm:p-6 bg-white shadow rounded-lg hover:shadow-md transition"
+            className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3 p-4 sm:p-6 bg-white shadow rounded-lg hover:shadow-md transition duration-200"
           >
             <div className="flex-shrink-0">{item.icon}</div>
             <div>

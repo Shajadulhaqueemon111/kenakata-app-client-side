@@ -92,31 +92,31 @@ export default function PopularCategory() {
     }
   }, [selectedCategory]);
 
-  const filterAllProduct = products.filter((item: any) =>
-    item.name.toLowerCase().includes(query.toLowerCase())
+  const filterAllProduct = products.filter((product: any) =>
+    product.name.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
     <div>
       {/* Category Section */}
-      <section className="py-10 px-4 md:px-8 lg:px-16">
+      <section className="py-10 px-4 sm:px-6 md:px-8 lg:px-16">
         <h2 className="text-xl font-semibold mb-8 text-center text-gray-800">
           Popular Categories
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {categories.map((category, index) => (
             <div
               key={index}
               onClick={() => setSelectedCategory(category.name)}
               className={`${category.bgColor} ${
                 category.borderColor
-              } border rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-xl transition duration-300 hover:scale-105 cursor-pointer ${
+              } border rounded-xl shadow-md p-4 flex flex-col items-center hover:shadow-xl transition duration-300 hover:scale-105 cursor-pointer ${
                 selectedCategory === category.name
                   ? "ring-4 ring-indigo-400"
                   : ""
               }`}
             >
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-md overflow-hidden mb-4 border border-gray-200">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-md overflow-hidden border border-gray-200">
                 <Image
                   src={category.image}
                   alt={category.name}
@@ -151,18 +151,18 @@ export default function PopularCategory() {
           <p className="text-center text-gray-500">No products found.</p>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 mb-4 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filterAllProduct.map((product, idx) => (
             <div
               key={idx}
-              className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full bg-white"
+              className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full"
             >
               <Image
                 src={product.image}
                 alt={product.name}
                 width={300}
                 height={200}
-                className="w-full h-[180px] sm:h-[200px] object-cover rounded"
+                className="w-full h-[200px] object-cover rounded"
               />
 
               <h3 className="font-semibold mt-2 text-black">{product.name}</h3>
@@ -177,9 +177,9 @@ export default function PopularCategory() {
               <div className="text-center mx-auto mt-4 w-full">
                 <button
                   onClick={() => dispatch(addToCart(product))}
-                  className="text-sm flex items-center justify-center gap-2 font-semibold text-red-500 py-2 px-3 w-full border border-red-300 rounded hover:bg-red-50 transition"
+                  className="text-sm flex items-center justify-center gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded"
                 >
-                  <TiShoppingCart className="text-lg" />
+                  <TiShoppingCart className="text-xl" />
                   Add to Bag
                 </button>
               </div>
@@ -194,7 +194,7 @@ export default function PopularCategory() {
           Popular On Kenakata
         </h1>
         <Marquee>
-          <div className="flex items-center gap-6 px-4 py-4">
+          <div className="flex products-center gap-6 px-4 py-4">
             {[pran, rekit, nestle, unilivers, godrej, cokakola, megi].map(
               (img, idx) => (
                 <div key={idx} className="flex-shrink-0">

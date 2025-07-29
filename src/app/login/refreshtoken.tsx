@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
+// update path as needed
 
+import publicAxios from "@/axiosInstance/publicaxios";
 import { jwtDecode } from "jwt-decode";
 import toast from "react-hot-toast";
 
@@ -8,16 +9,10 @@ export const refreshAccessToken = async (
   setUser: (user: any | null) => void
 ): Promise<boolean> => {
   try {
-    const res = await fetch(
-      "https://kenakata-server-side.vercel.app /api/v1/auth/refresh-token",
-      {
-        method: "POST",
-        credentials: "include",
-      }
-    );
+    const res = await publicAxios.post("/auth/refresh-token");
 
-    if (res.ok) {
-      const data = await res.json();
+    if (res.status === 200) {
+      const data = res.data;
       localStorage.setItem("accessToken", data.data.accessToken);
       const decoded: any = jwtDecode(data.data.accessToken);
 
@@ -30,7 +25,6 @@ export const refreshAccessToken = async (
       toast.success("Token refreshed successfully!");
       return true;
     }
-
     return false;
   } catch (error) {
     console.error("Token refresh failed", error);

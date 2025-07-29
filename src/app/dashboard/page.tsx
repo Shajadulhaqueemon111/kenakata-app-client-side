@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 // import { DataTable } from "@/components/data-table";
 // import { SectionCards } from "@/components/section-cards";
@@ -36,15 +37,31 @@
 // ✅ FIXED src/app/dashboard/page.tsx
 
 // src/app/dashboard/page.tsx
-
+"use client";
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/section-cards";
 
 import data from "./data.json";
 import { AppSidebar } from "@/components/app-sidebar";
+import { useAuth } from "../authcontext/context";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Page() {
+  const { user, authLoaded } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (authLoaded && (!user || user.role !== "admin")) {
+      router.push("/login");
+      router.refresh();
+    }
+  }, [authLoaded, user]);
+
+  if (!authLoaded) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}

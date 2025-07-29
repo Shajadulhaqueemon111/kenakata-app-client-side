@@ -12,11 +12,11 @@ import logo2 from "../../../app/user/allImages/grosary1.jpg";
 import logo3 from "../../../app/user/allImages/grosary2.avif";
 import logo4 from "../../../app/user/allImages/grosary3.avif";
 import Image from "next/image";
-import SecondBanner from "../secondbanner/page";
-import PopularCategory from "../popularCategory/page";
-import ShopeAndGetMore from "../shopeAndGetmore/page";
-import CurrentDelevary from "../currentDelevary/page";
-import BeautifulCollapsible from "../CommonQuestion/page";
+// import SecondBanner from "../secondbanner/page";
+// import PopularCategory from "../popularCategory/page";
+// import ShopeAndGetMore from "../shopeAndGetmore/page";
+// import CurrentDelevary from "../currentDelevary/page";
+// import BeautifulCollapsible from "../CommonQuestion/page";
 
 const BannerPage = () => {
   return (
@@ -35,44 +35,18 @@ const BannerPage = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="rounded-xl shadow-lg"
       >
-        <SwiperSlide>
-          <Image
-            src={logo2}
-            alt="medicine delivery"
-            className="w-full h-[250px] sm:h-[350px] md:h-[450px] object-cover rounded-xl"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src={logo3}
-            alt="pharmacy"
-            className="w-full h-[250px] sm:h-[350px] md:h-[450px] object-cover rounded-xl"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            src={logo4}
-            alt="pharmacy"
-            className="w-full h-[250px] sm:h-[350px] md:h-[450px] object-cover rounded-xl"
-          />
-        </SwiperSlide>
+        {[logo2, logo3, logo4].map((image, index) => (
+          <SwiperSlide key={index}>
+            <div className="w-full h-[180px] sm:h-[280px] md:h-[400px] lg:h-[450px] rounded-xl overflow-hidden">
+              <Image
+                src={image}
+                alt={`slide-${index}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
-
-      <div className="mt-4">
-        <SecondBanner />
-      </div>
-      <div className="mt-4">
-        <PopularCategory />
-      </div>
-      <div className="mt-4">
-        <ShopeAndGetMore />
-      </div>
-      <div className="mt-4">
-        <CurrentDelevary />
-      </div>
-      <div className="mt-4">
-        <BeautifulCollapsible />
-      </div>
     </div>
   );
 };

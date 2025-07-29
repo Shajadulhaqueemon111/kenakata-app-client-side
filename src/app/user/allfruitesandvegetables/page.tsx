@@ -9,6 +9,7 @@ import { TiShoppingCart } from "react-icons/ti";
 import { useSearch } from "@/context/SearchContext";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/app/redux/features/counter/counterSlice";
+import AllFreshFruitsAndVegetableBanner from "./allfruitsandvegitableBanner";
 
 const ITEMS_PER_PAGE = 8;
 
@@ -95,6 +96,9 @@ const AllFreshFruitsAndVegetable = () => {
   );
   return (
     <div className="px-4 sm:px-8 py-6">
+      <div>
+        <AllFreshFruitsAndVegetableBanner />
+      </div>
       <h1 className="text-2xl font-bold text-center mb-6">
         All Fresh Fruits and Vegetables
       </h1>

@@ -160,7 +160,7 @@ const RegisterPage = () => {
               onChange={(e) =>
                 setProfilImage(e.target.files ? e.target.files[0] : null)
               }
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 text-black"
             />
           </div>
 
