@@ -31,7 +31,7 @@ const ProductCard = ({ item, dispatch }: { item: any; dispatch: any }) => (
     <div className="text-center mx-auto mt-4">
       <button
         onClick={() => dispatch(addToCart(item))}
-        className="text-sm flex gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded"
+        className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-red-500 hover:bg-red-600 transition duration-200 py-2 px-4 rounded-xl w-full"
       >
         <TiShoppingCart className="text-xl" />
         Add to Bag

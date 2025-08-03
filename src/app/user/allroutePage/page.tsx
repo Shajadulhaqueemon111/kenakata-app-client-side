@@ -5,6 +5,7 @@ import ShopeAndGetMore from "../shopeAndGetmore/page";
 import CurrentDelevary from "../currentDelevary/page";
 import BeautifulCollapsible from "../CommonQuestion/page";
 import BannerPage from "../banner/page";
+import SpecialOffer from "../specialOffer/page";
 
 const AllRoutePage = () => {
   return (
@@ -14,6 +15,9 @@ const AllRoutePage = () => {
       </div>
       <div className="mt-4">
         <SecondBanner />
+      </div>
+      <div className="mt-4">
+        <SpecialOffer />
       </div>
       <div className="mt-4">
         <PopularCategory />

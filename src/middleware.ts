@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
 const publicPaths = ["/", "/login", "/register"];
-const protectedPaths = ["/dashboard", "/checkout"];
+const protectedPaths = ["/dashboard", "/user/checkout"];
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("accessToken")?.value;
@@ -62,7 +62,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
-    "/checkout/:path*",
+    "/user/checkout/:path*",
     "/",
     "/login",
     "/register",

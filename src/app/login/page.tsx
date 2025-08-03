@@ -118,7 +118,7 @@ const LoginPage = () => {
 
         <Button
           variant="outline"
-          className="w-full flex items-center justify-center gap-2"
+          className="w-full flex items-center justify-center gap-2 text-black"
           onClick={() => signIn("google", { callbackUrl: "/user" })}
         >
           <FcGoogle className="text-xl" />

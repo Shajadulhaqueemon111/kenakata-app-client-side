@@ -55,6 +55,9 @@ export default function PopularCategory() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { query } = useSearch();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemPerPage = 6;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -95,7 +98,19 @@ export default function PopularCategory() {
   const filterAllProduct = products.filter((product: any) =>
     product.name.toLowerCase().includes(query.toLowerCase())
   );
+  //pagination
 
+  const totalPage = Math.ceil(filterAllProduct.length / itemPerPage);
+  console.log(totalPage);
+  const popularProductPagination = filterAllProduct.slice(
+    (currentPage - 1) * itemPerPage,
+    currentPage * itemPerPage
+  );
+
+  const handlePaginationChange = (page: any) => {
+    if (page < 1 || page > totalPage) return;
+    setCurrentPage(page);
+  };
   return (
     <div>
       {/* Category Section */}
@@ -152,7 +167,7 @@ export default function PopularCategory() {
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 mb-4 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filterAllProduct.map((product, idx) => (
+          {popularProductPagination.map((product, idx) => (
             <div
               key={idx}
               className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full"
@@ -162,7 +177,7 @@ export default function PopularCategory() {
                 alt={product.name}
                 width={300}
                 height={200}
-                className="w-full h-[200px] object-cover rounded"
+                className="w-full h-full object-cover rounded"
               />
 
               <h3 className="font-semibold mt-2 text-black">{product.name}</h3>
@@ -177,7 +192,7 @@ export default function PopularCategory() {
               <div className="text-center mx-auto mt-4 w-full">
                 <button
                   onClick={() => dispatch(addToCart(product))}
-                  className="text-sm flex items-center justify-center gap-2 font-semibold text-red-500 py-2 px-4 w-full border border-red-300 rounded"
+                  className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-red-500 hover:bg-red-600 transition duration-200 py-2 px-4 rounded-xl w-full"
                 >
                   <TiShoppingCart className="text-xl" />
                   Add to Bag
@@ -185,6 +200,39 @@ export default function PopularCategory() {
               </div>
             </div>
           ))}
+        </div>
+        <div>
+          <div className="mt-8 flex justify-center space-x-2">
+            <button
+              onClick={() => handlePaginationChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="px-3 py-1 bg-blue-500 text-white rounded disabled:opacity-50"
+            >
+              Prev
+            </button>
+
+            {[...Array(totalPage)].map((_, i) => (
+              <button
+                key={i}
+                onClick={() => handlePaginationChange(i + 1)}
+                className={`px-3 py-1 rounded ${
+                  currentPage === i + 1
+                    ? "bg-blue-700 text-white"
+                    : "bg-white text-blue-500 border border-blue-500"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+
+            <button
+              onClick={() => handlePaginationChange(currentPage + 1)}
+              disabled={currentPage === totalPage}
+              className="px-3 py-1 bg-blue-500 text-white rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </section>
 

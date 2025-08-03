@@ -65,20 +65,22 @@ export default function Navbar() {
           {status === "loading" ? null : isLoggedIn ? (
             <>
               <span className="text-gray-700">Hi, {displayName}</span>
-              <span className="inline-block rounded-full overflow-hidden w-8 h-8">
-                {displayImage ? (
-                  <Image
-                    src={displayImage}
-                    alt="User avatar"
-                    width={34}
-                    height={34}
-                    className="object-cover"
-                    priority
-                  />
-                ) : (
-                  <div className="bg-gray-300 w-8 h-8 rounded-full" />
-                )}
-              </span>
+              <Link href="/user/profile">
+                <span className="inline-block rounded-full overflow-hidden w-8 h-8">
+                  {displayImage ? (
+                    <Image
+                      src={displayImage}
+                      alt="User avatar"
+                      width={34}
+                      height={34}
+                      className="object-cover"
+                      priority
+                    />
+                  ) : (
+                    <div className="bg-gray-300 w-8 h-8 rounded-full" />
+                  )}
+                </span>
+              </Link>
               <Button variant="default" onClick={handleLogout}>
                 Log out
               </Button>

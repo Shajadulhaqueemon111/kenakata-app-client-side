@@ -133,7 +133,7 @@ const TotalUser = () => {
             {currentUsers.map((user, index) => (
               <tr
                 key={user._id}
-                className="hover:bg-gray-50 transition duration-200"
+                className="hover:bg-gray-50 transition duration-200 text-black"
               >
                 <td className="border-t px-6 py-4">
                   {(currentPage - 1) * itemsPerPage + index + 1}

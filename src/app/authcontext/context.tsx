@@ -63,12 +63,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     checkTokenValidity();
   }, []);
 
-  const logout = () => {
+  const logout = async () => {
     setUser(null);
     console.log(" Context user cleared");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("loggedInUser");
-    logOut();
+    await logOut();
     router.push("/login");
   };
 
