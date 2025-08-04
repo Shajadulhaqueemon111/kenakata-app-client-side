@@ -148,7 +148,6 @@ export default function PopularCategory() {
         </div>
       </section>
 
-      {/* Product Section */}
       <section className="py-10 px-4 md:px-8 lg:px-16">
         <h2 className="text-xl font-semibold mb-8 text-center text-gray-800">
           {selectedCategory
@@ -166,7 +165,7 @@ export default function PopularCategory() {
           <p className="text-center text-gray-500">No products found.</p>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 mb-4 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 rounded-md sm:grid-cols-2 mb-4 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {popularProductPagination.map((product, idx) => (
             <div
               key={idx}

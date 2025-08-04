@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import authAxiosInstance from "@/axiosInstance/authaxios";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Tuser = {
   _id: string;
@@ -50,7 +51,11 @@ const TotalUser = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading users...</p>;
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
   }
 
   // Calculate pagination

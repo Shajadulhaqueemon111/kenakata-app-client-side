@@ -6,6 +6,7 @@ import CurrentDelevary from "../currentDelevary/page";
 import BeautifulCollapsible from "../CommonQuestion/page";
 import BannerPage from "../banner/page";
 import SpecialOffer from "../specialOffer/page";
+import Newsletter from "../newslatter/page";
 
 const AllRoutePage = () => {
   return (
@@ -27,6 +28,9 @@ const AllRoutePage = () => {
       </div>
       <div className="mt-4">
         <CurrentDelevary />
+      </div>
+      <div className="mt-4">
+        <Newsletter />
       </div>
       <div className="mt-4">
         <BeautifulCollapsible />

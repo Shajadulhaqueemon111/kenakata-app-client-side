@@ -113,7 +113,7 @@ const ProductList = () => {
     <div className="p-4 mt-8 mx-auto items-center min-h-screen sm:max-w-full md:max-w-4xl lg:max-w-6xl">
       <h1 className="text-xl font-bold mb-4 text-center">All Product</h1>
 
-      <div className="overflow-x-auto rounded-lg shadow-md">
+      <div className="overflow-x-auto rounded-lg shadow-md text-black">
         <table className="min-w-full table-auto border-collapse bg-white">
           <thead>
             <tr className="bg-gray-100 text-left text-gray-600 uppercase text-sm">

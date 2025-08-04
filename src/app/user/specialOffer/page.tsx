@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import { addToCart } from "@/app/redux/features/counter/counterSlice";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearch } from "@/context/SearchContext";
+import FilterBar from "@/OverallFilter/FilterBar";
+import { useFilter } from "@/OverallFilter/FilterContext";
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -10,7 +13,7 @@ import { TiShoppingCart } from "react-icons/ti";
 import { useDispatch } from "react-redux";
 
 type OfferProduct = {
-  id: string;
+  _id: string;
   name: string;
   category: string;
   price: string;
@@ -25,13 +28,16 @@ const SpecialOffer = () => {
   const [loading, setLoading] = useState(true);
   const { query } = useSearch();
   const dispatch = useDispatch();
+  const { selectedCategory, selectedPrice } = useFilter();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemPerPage = 6;
 
   useEffect(() => {
     const fetchOfferProduct = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("/offerproduct.json");
-        setOfferProduct(response.data);
+        const response = await axios.get("http://localhost:5000/api/v1/offer");
+        setOfferProduct(response.data.data);
       } catch (error) {
         console.log(error);
       } finally {
@@ -41,18 +47,35 @@ const SpecialOffer = () => {
     fetchOfferProduct();
   }, []);
 
-  const filterOfferProduct = offerProduct.filter((offer) =>
-    offer.name.toLowerCase().includes(query.toLowerCase())
+  // ফিল্টার লজিক
+  const filterOfferProduct = offerProduct.filter((offer) => {
+    const nameMatch = offer.name.toLowerCase().includes(query.toLowerCase());
+    const categoryMatch =
+      selectedCategory === "all" || offer.category === selectedCategory;
+
+    const price = parseFloat(offer.price);
+    const priceMatch =
+      selectedPrice === "all" ||
+      (selectedPrice === "low" && price < 50) ||
+      (selectedPrice === "mid" && price >= 50 && price <= 100) ||
+      (selectedPrice === "high" && price > 100);
+
+    return nameMatch && categoryMatch && priceMatch;
+  });
+
+  const totalPage = Math.ceil(filterOfferProduct.length / itemPerPage);
+  const OfferProductPagination = filterOfferProduct.slice(
+    (currentPage - 1) * itemPerPage,
+    currentPage * itemPerPage
   );
+
+  const handlePaginationChange = (page: number) => {
+    if (page < 1 || page > totalPage) return;
+    setCurrentPage(page);
+  };
 
   if (loading) {
     return <Skeleton />;
-  }
-
-  if (!filterOfferProduct.length) {
-    return (
-      <div className="text-black text-center mt-10">Product not found</div>
-    );
   }
 
   return (
@@ -60,46 +83,99 @@ const SpecialOffer = () => {
       <h2 className="text-2xl font-bold text-center mb-6 text-black">
         Special Offers
       </h2>
-      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {filterOfferProduct.map((offer) => (
-          <div
-            key={offer.id}
-            className="flex flex-col justify-between border p-4 rounded-2xl shadow hover:shadow-xl transition duration-300 bg-white"
-          >
-            <Image
-              src={offer.image}
-              alt={offer.name}
-              width={300}
-              height={200}
-              className="w-full h-full object-cover rounded-xl"
-            />
 
-            <h3 className="font-semibold mt-3 text-lg text-black">
-              {offer.name}
-            </h3>
+      <FilterBar />
 
-            <p className="text-sm text-gray-600 mt-1  overflow-hidden">
-              {offer.description}
-            </p>
+      {filterOfferProduct.length === 0 ? (
+        <div className="text-black text-center mt-10">Product not found</div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {OfferProductPagination.map((offer) => (
+              <div
+                key={offer._id}
+                className="relative flex flex-col justify-between border p-4 rounded-2xl shadow hover:shadow-xl transition duration-300 bg-white"
+              >
+                <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full z-10">
+                  {offer.offerPercent}% OFF
+                </div>
 
-            <p className="mt-2 font-bold text-black text-base">
-              ৳{offer.price}
-            </p>
-            <p className="text-xs text-gray-500">Weight: {offer.weight}</p>
-            <p className="text-xs text-green-600 font-medium">
-              {offer.offerPercent}% OFF
-            </p>
+                <Image
+                  src={offer.image}
+                  alt={offer.name}
+                  width={300}
+                  height={200}
+                  className="w-full h-[180px] object-cover rounded-xl"
+                />
+
+                <h3 className="font-semibold mt-3 text-lg text-black">
+                  {offer.name}
+                </h3>
+
+                <p className="text-sm text-gray-600 mt-1 overflow-hidden">
+                  {offer.description}
+                </p>
+
+                <div className="mt-2">
+                  <p className="text-sm text-gray-500 line-through">
+                    ৳{offer.price}
+                  </p>
+                  <p className="text-base font-bold text-green-600">
+                    ৳
+                    {(
+                      parseFloat(offer.price) -
+                      (parseFloat(offer.price) * offer.offerPercent) / 100
+                    ).toFixed(0)}
+                  </p>
+                </div>
+
+                <p className="text-xs text-gray-500">Weight: {offer.weight}</p>
+
+                <button
+                  onClick={() => dispatch(addToCart(offer))}
+                  className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-red-500 hover:bg-red-600 transition duration-200 py-2 px-4 rounded-xl w-full"
+                >
+                  <TiShoppingCart className="text-xl" />
+                  Add to Bag
+                </button>
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          <div className="mt-8 flex justify-center space-x-2">
+            <button
+              onClick={() => handlePaginationChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="px-3 py-1 bg-blue-500 text-white rounded disabled:opacity-50"
+            >
+              Prev
+            </button>
+
+            {[...Array(totalPage)].map((_, i) => (
+              <button
+                key={i}
+                onClick={() => handlePaginationChange(i + 1)}
+                className={`px-3 py-1 rounded ${
+                  currentPage === i + 1
+                    ? "bg-blue-700 text-white"
+                    : "bg-white text-blue-500 border border-blue-500"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
 
             <button
-              //   onClick={() => dispatch(addToCart(offer))}
-              className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-red-500 hover:bg-red-600 transition duration-200 py-2 px-4 rounded-xl w-full"
+              onClick={() => handlePaginationChange(currentPage + 1)}
+              disabled={currentPage === totalPage}
+              className="px-3 py-1 bg-blue-500 text-white rounded disabled:opacity-50"
             >
-              <TiShoppingCart className="text-xl" />
-              Add to Bag
+              Next
             </button>
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </div>
   );
 };

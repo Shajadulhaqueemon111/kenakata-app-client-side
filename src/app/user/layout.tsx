@@ -10,6 +10,7 @@ import Navbar from "@/components/navbar/navbar";
 import Footer from "./footer/page";
 import FloatingCart from "./Floatingcart/page";
 import { SearchProvider } from "@/context/SearchContext";
+import { FilterProvider } from "@/OverallFilter/FilterContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,23 +29,25 @@ export default function UserLayout({
 }) {
   return (
     <SearchProvider>
-      <SidebarProvider
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="flex h-screen font-sans antialiased">
-          <Sidebar className="w-64">
-            <AppSidebarContent />
-          </Sidebar>
+      <FilterProvider>
+        <SidebarProvider
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <div className="flex h-screen font-sans antialiased">
+            <Sidebar className="w-64">
+              <AppSidebarContent />
+            </Sidebar>
 
-          <main className="flex-1 p-4">
-            <SidebarTrigger className="text-black mt-10" />
-            <Navbar />
-            <div className="mt-4">{children}</div>
-            <FloatingCart></FloatingCart>
-            <Footer />
-          </main>
-        </div>
-      </SidebarProvider>
+            <main className="flex-1 p-4">
+              <SidebarTrigger className="text-black mt-10" />
+              <Navbar />
+              <div className="mt-4">{children}</div>
+              <FloatingCart></FloatingCart>
+              <Footer />
+            </main>
+          </div>
+        </SidebarProvider>
+      </FilterProvider>
     </SearchProvider>
   );
 }
