@@ -5,15 +5,15 @@ import publicAxios from "@/axiosInstance/publicaxios";
 import React, { useEffect, useState } from "react";
 import Loading from "../loading";
 import Image from "next/image";
-import { TiShoppingCart } from "react-icons/ti";
 import { useSearch } from "@/context/SearchContext";
-import { useDispatch } from "react-redux";
-import { addToCart } from "@/app/redux/features/counter/counterSlice";
 import AllFreshFruitsAndVegetableBanner from "./allfruitsandvegitableBanner";
+import Rating from "@/components/Reating/Rating";
+import Link from "next/link";
+import { AiOutlineEye } from "react-icons/ai";
 
 const ITEMS_PER_PAGE = 8;
 
-const ProductCard = ({ item, dispatch }: { item: any; dispatch: any }) => (
+const ProductCard = ({ item }: { item: any }) => (
   <div className="flex flex-col justify-between border p-4 rounded shadow hover:shadow-lg transition h-full bg-white">
     <Image
       src={item.image}
@@ -28,14 +28,17 @@ const ProductCard = ({ item, dispatch }: { item: any; dispatch: any }) => (
     </p>
     <p className="mt-1 font-bold text-black">৳{item.price}</p>
     <p className="text-xs text-gray-500">Weight: {item.weight}</p>
+    <p className="text-xs text-gray-500">
+      {" "}
+      <Rating value={Number(item.rating)} />
+    </p>
     <div className="text-center mx-auto mt-4">
-      <button
-        onClick={() => dispatch(addToCart(item))}
-        className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-red-500 hover:bg-red-600 transition duration-200 py-2 px-4 rounded-xl w-full"
-      >
-        <TiShoppingCart className="text-xl" />
-        Add to Bag
-      </button>
+      <Link href={`/user/allmeatandfish/${item._id}`}>
+        <button className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-blue-500 hover:bg-blue-600 transition duration-200 py-2 px-4 rounded-xl w-full">
+          <AiOutlineEye className="text-xl" />
+          View Details
+        </button>
+      </Link>
     </div>
   </div>
 );
@@ -44,7 +47,7 @@ const AllFreshFruitsAndVegetable = () => {
   const [fruits, setFruits] = useState<any[]>([]);
   const [vegetables, setVegetables] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+
   const [currentPage, setCurrentPage] = useState(1);
   const { query } = useSearch();
   useEffect(() => {
@@ -55,10 +58,10 @@ const AllFreshFruitsAndVegetable = () => {
         const productData = res.data?.data || [];
 
         const fruitsOnly = productData.filter(
-          (item: any) => item.category.toLowerCase() === "fruits"
+          (item: any) => item.category.trim().toLowerCase() === "fruits"
         );
         const vegetablesOnly = productData.filter(
-          (item: any) => item.category.toLowerCase() === "vegetables"
+          (item: any) => item.category.trim().toLowerCase() === "vegetables"
         );
 
         setFruits(fruitsOnly);
@@ -83,10 +86,10 @@ const AllFreshFruitsAndVegetable = () => {
   const currentItems = paginate(combined, currentPage);
 
   const currentFruits = currentItems.filter(
-    (item) => item.category.toLowerCase() === "fruits"
+    (item) => item.category.trim().toLowerCase() === "fruits"
   );
   const currentVegetables = currentItems.filter(
-    (item) => item.category.toLowerCase() === "vegetables"
+    (item) => item.category.trim().toLowerCase() === "vegetables"
   );
   const filterfruites = currentFruits.filter((item: any) =>
     item.name.toLowerCase().includes(query.toLowerCase())
@@ -109,13 +112,10 @@ const AllFreshFruitsAndVegetable = () => {
         </div>
       ) : (
         <>
-          <h2 className="text-xl font-bold my-4 text-center text-green-600">
-            Fresh Fruits
-          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
             {currentFruits.length > 0 ? (
               filterfruites.map((item) => (
-                <ProductCard key={item._id} item={item} dispatch={dispatch} />
+                <ProductCard key={item._id} item={item} />
               ))
             ) : (
               <p className="text-center col-span-full text-gray-500">
@@ -124,13 +124,10 @@ const AllFreshFruitsAndVegetable = () => {
             )}
           </div>
 
-          <h2 className="text-xl font-bold my-4 text-center text-lime-700">
-            Fresh Vegetables
-          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
             {currentVegetables.length > 0 ? (
               filtervegetables.map((item) => (
-                <ProductCard key={item._id} item={item} dispatch={dispatch} />
+                <ProductCard key={item._id} item={item} />
               ))
             ) : (
               <p className="text-center col-span-full text-gray-500">

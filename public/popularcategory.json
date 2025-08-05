@@ -5,7 +5,8 @@
     "price": "120",
     "weight": "1kg",
     "description": "Crisp and sweet apples perfect for snacking.",
-    "image": "https://i.ibb.co/vD8zPvK/apple.jpg"
+    "image": "https://i.ibb.co/vD8zPvK/apple.jpg",
+    "rating": "10"
   },
   {
     "name": "Banana (12 pcs)",
@@ -13,7 +14,8 @@
     "price": "50",
     "weight": "12 pcs",
     "description": "Fresh bananas high in potassium.",
-    "image": "https://i.ibb.co/fmhrc2K/bananas.webp"
+    "image": "https://i.ibb.co/fmhrc2K/bananas.webp",
+    "rating": "10"
   },
   {
     "name": "Orange (1kg)",
@@ -21,7 +23,8 @@
     "price": "100",
     "weight": "1kg",
     "description": "Juicy oranges full of Vitamin C.",
-    "image": "https://i.ibb.co/W44559Cr/pexels-pixabay-327098.jpg"
+    "image": "https://i.ibb.co/W44559Cr/pexels-pixabay-327098.jpg",
+    "rating": "10"
   },
   {
     "name": "Grapes (500gm)",
@@ -29,7 +32,8 @@
     "price": "90",
     "weight": "500gm",
     "description": "Seedless green grapes for a healthy treat.",
-    "image": "https://i.ibb.co/8D1YPrRS/grapes-0-jpg.webp"
+    "image": "https://i.ibb.co/8D1YPrRS/grapes-0-jpg.webp",
+    "rating": "10"
   },
 
   {
@@ -38,7 +42,8 @@
     "price": "25",
     "weight": "1kg",
     "description": "Fresh and organic potatoes, great for everyday cooking.",
-    "image": "https://i.ibb.co/hFxGL49D/potatoes-challenge-1-1.jpg"
+    "image": "https://i.ibb.co/hFxGL49D/potatoes-challenge-1-1.jpg",
+    "rating": "10"
   },
   {
     "name": "Tomato (1kg)",
@@ -46,7 +51,8 @@
     "price": "30",
     "weight": "1kg",
     "description": "Juicy red tomatoes, ideal for curry and salad.",
-    "image": "https://i.ibb.co/JjBMKrs9/TOMATOES-RED-RIPE-VINE-SS-1-1024x681.jpg"
+    "image": "https://i.ibb.co/JjBMKrs9/TOMATOES-RED-RIPE-VINE-SS-1-1024x681.jpg",
+    "rating": "10"
   },
   {
     "name": "Spinach (250gm)",
@@ -54,7 +60,8 @@
     "price": "20",
     "weight": "250gm",
     "description": "Fresh spinach leaves full of iron and vitamins.",
-    "image": "https://i.ibb.co/vC7FSxrt/intro-1670518347.jpg"
+    "image": "https://i.ibb.co/vC7FSxrt/intro-1670518347.jpg",
+    "rating": "10"
   },
   {
     "name": "Carrot (500gm)",
@@ -62,7 +69,8 @@
     "price": "35",
     "weight": "500gm",
     "description": "Crunchy and sweet carrots perfect for snacks and dishes.",
-    "image": "https://i.ibb.co/BVpBZSHY/12818-1-500x500.webp"
+    "image": "https://i.ibb.co/BVpBZSHY/12818-1-500x500.webp",
+    "rating": "10"
   },
   {
     "name": "Hilsha Fish (1kg)",
@@ -70,7 +78,8 @@
     "price": "750",
     "weight": "1kg",
     "description": "Premium quality fresh Hilsha, rich in taste and nutrition.",
-    "image": "https://i.ibb.co/9mgBDF13/1611114902-hilsa1kg.jpg"
+    "image": "https://i.ibb.co/9mgBDF13/1611114902-hilsa1kg.jpg",
+    "rating": "10"
   },
   {
     "name": "Rui Fish (1kg)",
@@ -78,7 +87,8 @@
     "price": "400",
     "weight": "1kg",
     "description": "Fresh Rui fish, perfect for traditional curries.",
-    "image": "https://i.ibb.co/Zz2LkyDW/istockphoto-1499915568-612x612.jpg"
+    "image": "https://i.ibb.co/Zz2LkyDW/istockphoto-1499915568-612x612.jpg",
+    "rating": "10"
   },
   {
     "name": "Katla Fish (1kg)",
@@ -86,7 +96,8 @@
     "price": "420",
     "weight": "1kg",
     "description": "Large Katla fish ideal for spicy preparations.",
-    "image": "https://i.ibb.co/KptQhjYj/Catla-catla.jpg"
+    "image": "https://i.ibb.co/KptQhjYj/Catla-catla.jpg",
+    "rating": "10"
   },
   {
     "name": "Prawn (500gm)",
@@ -94,7 +105,8 @@
     "price": "500",
     "weight": "500gm",
     "description": "Freshwater prawns with tender meat and great flavor.",
-    "image": "https://i.ibb.co/ZRdSW7Yh/Tiger-Prawn-1.webp"
+    "image": "https://i.ibb.co/ZRdSW7Yh/Tiger-Prawn-1.webp",
+    "rating": "10"
   },
   {
     "name": "Tilapia Fish (1kg)",
@@ -102,7 +114,8 @@
     "price": "300",
     "weight": "1kg",
     "description": "Farm-fresh tilapia fish, soft and flavorful.",
-    "image": "https://i.ibb.co/LD0Q6FVv/images-6.jpg"
+    "image": "https://i.ibb.co/LD0Q6FVv/images-6.jpg",
+    "rating": "10"
   },
   {
     "name": "Beef (1kg)",
@@ -110,7 +123,8 @@
     "price": "700",
     "weight": "1kg",
     "description": "Fresh beef perfect for curry, steak, or kebabs.",
-    "image": "https://i.ibb.co/2YpDCrSM/360-F-278776362-2u1n3jb6yxmpj-BP9lhp-Emx-Z9-TIzt-Ap-T3.jpg"
+    "image": "https://i.ibb.co/2YpDCrSM/360-F-278776362-2u1n3jb6yxmpj-BP9lhp-Emx-Z9-TIzt-Ap-T3.jpg",
+    "rating": "10"
   },
   {
     "name": "Chicken (1kg)",
@@ -118,7 +132,8 @@
     "price": "180",
     "weight": "1kg",
     "description": "Fresh broiler chicken ideal for daily meals.",
-    "image": "https://i.ibb.co/0jGSNH1D/Chicken-Curry-Cut-min-1.png"
+    "image": "https://i.ibb.co/0jGSNH1D/Chicken-Curry-Cut-min-1.png",
+    "rating": "10"
   },
   {
     "name": "Mutton (1kg)",
@@ -126,7 +141,8 @@
     "price": "950",
     "weight": "1kg",
     "description": "High-quality mutton for special recipes and biryani.",
-    "image": "https://i.ibb.co/2YpDCrSM/360-F-278776362-2u1n3jb6yxmpj-BP9lhp-Emx-Z9-TIzt-Ap-T3.jpg"
+    "image": "https://i.ibb.co/2YpDCrSM/360-F-278776362-2u1n3jb6yxmpj-BP9lhp-Emx-Z9-TIzt-Ap-T3.jpg",
+    "rating": "10"
   },
   {
     "name": "Duck Meat (1kg)",
@@ -134,7 +150,8 @@
     "price": "600",
     "weight": "1kg",
     "description": "Fresh duck meat with rich flavor and tenderness.",
-    "image": "https://i.ibb.co/LdGnfmKR/1679555342499-sku-1027-0-500x500.webp"
+    "image": "https://i.ibb.co/LdGnfmKR/1679555342499-sku-1027-0-500x500.webp",
+    "rating": "10"
   },
 
   {
@@ -143,7 +160,8 @@
     "price": "390",
     "weight": "2L",
     "description": "Pure sunflower oil perfect for healthy cooking.",
-    "image": "https://i.ibb.co/jPPx43sF/Sunflower-Oil.jpg"
+    "image": "https://i.ibb.co/jPPx43sF/Sunflower-Oil.jpg",
+    "rating": "10"
   },
   {
     "name": "Bashmati Rice (5kg)",
@@ -151,7 +169,8 @@
     "price": "750",
     "weight": "5kg",
     "description": "Premium long grain basmati rice ideal for biryani and pulao.",
-    "image": "https://i.ibb.co/21cF9PZh/istockphoto-519309790-612x612.jpg"
+    "image": "https://i.ibb.co/21cF9PZh/istockphoto-519309790-612x612.jpg",
+    "rating": "10"
   },
   {
     "name": "Lentils (1kg)",
@@ -159,7 +178,8 @@
     "price": "120",
     "weight": "1kg",
     "description": "High-quality red lentils for everyday dal recipes.",
-    "image": "https://i.ibb.co/QvDp5gw4/organic-lentils-red-whole.jpg"
+    "image": "https://i.ibb.co/QvDp5gw4/organic-lentils-red-whole.jpg",
+    "rating": "10"
   },
   {
     "name": "Mustard Oil (1L)",
@@ -167,7 +187,8 @@
     "price": "210",
     "weight": "1L",
     "description": "Strong aromatic mustard oil ideal for traditional cooking.",
-    "image": "https://i.ibb.co/jPPx43sF/Sunflower-Oil.jpg"
+    "image": "https://i.ibb.co/jPPx43sF/Sunflower-Oil.jpg",
+    "rating": "10"
   },
   {
     "name": "Atta (Whole Wheat Flour) 2kg",
@@ -175,7 +196,8 @@
     "price": "160",
     "weight": "2kg",
     "description": "Stone-ground whole wheat flour perfect for soft rotis.",
-    "image": "https://i.ibb.co/gb0qC9QW/wheat-flour-bunch-ears-dried-600nw-1933602335.webp"
+    "image": "https://i.ibb.co/gb0qC9QW/wheat-flour-bunch-ears-dried-600nw-1933602335.webp",
+    "rating": "10"
   },
 
   {
@@ -184,7 +206,8 @@
     "price": "110",
     "weight": "500ml",
     "description": "Tough on grease, gentle on hands.",
-    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg"
+    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg",
+    "rating": "10"
   },
   {
     "name": "Floor Cleaner (1L)",
@@ -192,7 +215,8 @@
     "price": "180",
     "weight": "1L",
     "description": "Kills 99.9% of germs and leaves floors sparkling clean.",
-    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg"
+    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg",
+    "rating": "10"
   },
   {
     "name": "Toilet Cleaner (500ml)",
@@ -200,7 +224,8 @@
     "price": "95",
     "weight": "500ml",
     "description": "Powerful toilet cleaner for deep disinfection and stain removal.",
-    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg"
+    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg",
+    "rating": "10"
   },
   {
     "name": "Glass Cleaner (650ml)",
@@ -208,7 +233,8 @@
     "price": "130",
     "weight": "650ml",
     "description": "Streak-free shine for all your glass and mirror surfaces.",
-    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg"
+    "image": "https://i.ibb.co/M5SyMz8k/0303086-shiny-dishwashing-liquid-lime-500-ml.jpg",
+    "rating": "10"
   },
   {
     "name": "Laundry Detergent (2kg)",
@@ -216,6 +242,7 @@
     "price": "290",
     "weight": "2kg",
     "description": "Removes tough stains and keeps clothes smelling fresh.",
-    "image": "https://i.ibb.co/xqk8gZC7/laundry-detergent-2048px-5533-3x2-1.webp"
+    "image": "https://i.ibb.co/xqk8gZC7/laundry-detergent-2048px-5533-3x2-1.webp",
+    "rating": "10"
   }
 ]

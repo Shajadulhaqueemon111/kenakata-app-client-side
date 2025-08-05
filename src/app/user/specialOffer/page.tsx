@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { addToCart } from "@/app/redux/features/counter/counterSlice";
+import Rating from "@/components/Reating/Rating";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearch } from "@/context/SearchContext";
 import FilterBar from "@/OverallFilter/FilterBar";
 import { useFilter } from "@/OverallFilter/FilterContext";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { TiShoppingCart } from "react-icons/ti";
-import { useDispatch } from "react-redux";
+import { AiOutlineEye } from "react-icons/ai";
 
 type OfferProduct = {
   _id: string;
@@ -20,6 +19,7 @@ type OfferProduct = {
   weight: string;
   description: string;
   image: string;
+  rating: string;
   offerPercent: number;
 };
 
@@ -27,7 +27,7 @@ const SpecialOffer = () => {
   const [offerProduct, setOfferProduct] = useState<OfferProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const { query } = useSearch();
-  const dispatch = useDispatch();
+
   const { selectedCategory, selectedPrice } = useFilter();
   const [currentPage, setCurrentPage] = useState(1);
   const itemPerPage = 6;
@@ -47,7 +47,6 @@ const SpecialOffer = () => {
     fetchOfferProduct();
   }, []);
 
-  // ফিল্টার লজিক
   const filterOfferProduct = offerProduct.filter((offer) => {
     const nameMatch = offer.name.toLowerCase().includes(query.toLowerCase());
     const categoryMatch =
@@ -112,10 +111,6 @@ const SpecialOffer = () => {
                   {offer.name}
                 </h3>
 
-                <p className="text-sm text-gray-600 mt-1 overflow-hidden">
-                  {offer.description}
-                </p>
-
                 <div className="mt-2">
                   <p className="text-sm text-gray-500 line-through">
                     ৳{offer.price}
@@ -130,14 +125,20 @@ const SpecialOffer = () => {
                 </div>
 
                 <p className="text-xs text-gray-500">Weight: {offer.weight}</p>
+                <p className="text-xs text-gray-500">
+                  <Rating value={Number(offer.rating)} />
+                </p>
 
-                <button
-                  onClick={() => dispatch(addToCart(offer))}
-                  className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-red-500 hover:bg-red-600 transition duration-200 py-2 px-4 rounded-xl w-full"
-                >
-                  <TiShoppingCart className="text-xl" />
-                  Add to Bag
-                </button>
+                <div>
+                  <Link
+                    href={`/user/specialOffer/offerDetailspage/${offer._id}`}
+                  >
+                    <button className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-blue-500 hover:bg-blue-600 transition duration-200 py-2 px-4 rounded-xl w-full">
+                      <AiOutlineEye className="text-xl" />
+                      View Details
+                    </button>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>

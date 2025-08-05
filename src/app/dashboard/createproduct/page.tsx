@@ -93,117 +93,115 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="w-full px-4 py-10 bg-gray-50 min-h-screen">
-      <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-xl p-6 md:p-10">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          Create New Product
-        </h2>
+    <div className="max-w-5xl  mx-auto p-6 bg-white shadow rounded-md mt-8">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+        Create New Product
+      </h2>
 
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
-          {/* Name */}
-          <FormInput
-            label="Name"
-            name="name"
-            value={formData.name}
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      >
+        {/* Name */}
+        <FormInput
+          label="Name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+
+        {/* Category */}
+        <div>
+          <label
+            htmlFor="category"
+            className="block mb-1 font-semibold text-gray-700"
+          >
+            Category
+          </label>
+          <select
+            name="category"
+            id="category"
+            value={formData.category}
             onChange={handleChange}
             required
-          />
-
-          {/* Category */}
-          <div>
-            <label
-              htmlFor="category"
-              className="block mb-1 font-semibold text-gray-700"
-            >
-              Category
-            </label>
-            <select
-              name="category"
-              id="category"
-              value={formData.category}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            >
-              <option value="" disabled>
-                Select category
+            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          >
+            <option value="" disabled>
+              Select category
+            </option>
+            {categoryOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
               </option>
-              {categoryOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
+            ))}
+          </select>
+        </div>
 
-          {/* Price */}
-          <FormInput
-            label="Price"
-            name="price"
-            value={formData.price}
+        {/* Price */}
+        <FormInput
+          label="Price"
+          name="price"
+          value={formData.price}
+          onChange={handleChange}
+          required
+          type="number"
+        />
+
+        {/* Weight */}
+        <FormInput
+          label="Weight"
+          name="weight"
+          value={formData.weight}
+          onChange={handleChange}
+          required
+        />
+
+        {/* Description (takes full width) */}
+        <div className="md:col-span-2">
+          <label className="block mb-1 font-semibold text-gray-700">
+            Description
+          </label>
+          <textarea
+            name="description"
+            value={formData.description}
             onChange={handleChange}
-            required
-            type="number"
-          />
-
-          {/* Weight */}
-          <FormInput
-            label="Weight"
-            name="weight"
-            value={formData.weight}
-            onChange={handleChange}
+            rows={4}
+            className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
+        </div>
 
-          {/* Description (takes full width) */}
-          <div className="md:col-span-2">
-            <label className="block mb-1 font-semibold text-gray-700">
-              Description
-            </label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              rows={4}
-              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
+        {/* Image upload (takes full width) */}
+        <div className="md:col-span-2">
+          <label className="block mb-1 font-semibold text-gray-700">
+            Image
+          </label>
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="w-full"
+            required
+          />
+          {imageFile && (
+            <p className="text-sm mt-1 text-gray-500">
+              Selected: {imageFile.name}
+            </p>
+          )}
+        </div>
 
-          {/* Image upload (takes full width) */}
-          <div className="md:col-span-2">
-            <label className="block mb-1 font-semibold text-gray-700">
-              Image
-            </label>
-            <Input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="w-full"
-              required
-            />
-            {imageFile && (
-              <p className="text-sm mt-1 text-gray-500">
-                Selected: {imageFile.name}
-              </p>
-            )}
-          </div>
-
-          {/* Submit button (full width) */}
-          <div className="md:col-span-2">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded transition disabled:opacity-50"
-            >
-              {isSubmitting ? "Submitting..." : "Create Product"}
-            </button>
-          </div>
-        </form>
-      </div>
+        {/* Submit button (full width) */}
+        <div className="md:col-span-2">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded transition disabled:opacity-50"
+          >
+            {isSubmitting ? "Submitting..." : "Create Product"}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

@@ -1,7 +1,15 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Newsletter = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
+
   return (
     <div>
       <h1 className="text-center text-2xl text-black font-bold mb-3.5">

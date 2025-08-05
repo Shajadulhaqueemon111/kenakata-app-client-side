@@ -27,11 +27,13 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const [hasMounted, setHasMounted] = useState(false);
+
   useEffect(() => {
     setHasMounted(true);
   }, []);
 
   if (!hasMounted) return null;
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -64,8 +66,10 @@ const LoginPage = () => {
         profileImage: decoded.profileImage || data.data.profileImage,
         exp: decoded.exp || data.data.exp,
       };
+
       setUser(user);
       localStorage.setItem("loggedInUser", JSON.stringify(user));
+
       router.push(user.role?.toLowerCase() === "admin" ? "/dashboard" : "/");
     } catch (error: any) {
       console.error("Login error:", error);
@@ -80,6 +84,35 @@ const LoginPage = () => {
       <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6">
         <h2 className="text-2xl font-bold text-center text-gray-800">Login</h2>
 
+        {/* Prefill Buttons for Testing */}
+        <div className="flex justify-between gap-2">
+          <Button
+            type="button"
+            variant="secondary"
+            className="w-1/2 text-xs sm:text-sm"
+            onClick={() => {
+              setEmail("mdshajdulhaqueemon@gmail.com");
+              setPassword("12345Aa!");
+              toast.success("User credentials filled");
+            }}
+          >
+            Fill User Credentials
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            className="w-1/2 text-xs sm:text-sm"
+            onClick={() => {
+              setEmail("admin@gmail.com");
+              setPassword("admin123");
+              toast.success("Admin credentials filled");
+            }}
+          >
+            Fill Admin Credentials
+          </Button>
+        </div>
+
+        {/* Login Form */}
         <form onSubmit={handleLogin} className="space-y-4">
           <Input
             type="email"
@@ -107,6 +140,7 @@ const LoginPage = () => {
           </Link>
         </p>
 
+        {/* Divider */}
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-300" />
@@ -116,6 +150,7 @@ const LoginPage = () => {
           </div>
         </div>
 
+        {/* Google Sign-In Button */}
         <Button
           variant="outline"
           className="w-full flex items-center justify-center gap-2 text-black"

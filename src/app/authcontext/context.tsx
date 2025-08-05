@@ -4,7 +4,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
-
 import { refreshAccessToken } from "../login/refreshtoken";
 import { logOut } from "../login/logout";
 
@@ -34,12 +33,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("loggedInUser");
-    const token = localStorage.getItem("accessToken");
+    const checkAuth = async () => {
+      const token = localStorage.getItem("accessToken");
+      const savedUser = localStorage.getItem("loggedInUser");
 
-    if (savedUser) setUser(JSON.parse(savedUser));
+      if (savedUser) {
+        try {
+          setUser(JSON.parse(savedUser));
+        } catch {
+          localStorage.removeItem("loggedInUser");
+        }
+      }
 
-    const checkTokenValidity = async () => {
       if (token) {
         try {
           const decoded: { exp: number } = jwtDecode(token);
@@ -48,24 +53,25 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           if (Date.now() > expirationTime) {
             const refreshed = await refreshAccessToken(setUser);
             if (!refreshed) {
-              logout();
-              router.push("/login");
+              await logout();
+              return;
             }
           }
-        } catch {
-          logout();
-          router.push("/login");
+        } catch (err) {
+          console.log(err);
+          await logout();
+          return;
         }
       }
+
       setAuthLoaded(true);
     };
 
-    checkTokenValidity();
+    checkAuth();
   }, []);
 
   const logout = async () => {
     setUser(null);
-    console.log(" Context user cleared");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("loggedInUser");
     await logOut();

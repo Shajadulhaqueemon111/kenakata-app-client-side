@@ -14,6 +14,7 @@ type Tproduct = {
   description: string;
   image: string;
   weight: string;
+  rating: string;
 };
 
 const UpdateProductPage = () => {
@@ -28,6 +29,7 @@ const UpdateProductPage = () => {
     category: "",
     price: "",
     weight: "",
+    rating: "",
     description: "",
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -57,6 +59,7 @@ const UpdateProductPage = () => {
           category: fetchedProduct.category,
           price: fetchedProduct.price,
           weight: fetchedProduct.weight,
+          rating: fetchedProduct.rating,
           description: fetchedProduct.description,
         });
       } catch (error) {
@@ -90,6 +93,7 @@ const UpdateProductPage = () => {
     if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.category.trim()) newErrors.category = "Category is required";
     if (!formData.weight.trim()) newErrors.weight = "Weight is required";
+    if (!formData.rating.trim()) newErrors.rating = "Weight is required";
     if (!formData.price.trim()) newErrors.price = "Price is required";
     else if (isNaN(Number(formData.price)))
       newErrors.price = "Price must be a number";
@@ -110,6 +114,7 @@ const UpdateProductPage = () => {
     data.append("name", formData.name);
     data.append("category", formData.category);
     data.append("weight", formData.weight);
+    data.append("rating", formData.rating);
     data.append("price", formData.price);
     data.append("description", formData.description);
     if (imageFile) {
@@ -137,7 +142,7 @@ const UpdateProductPage = () => {
     <div className="flex justify-center items-center lg:min-w-6xl md:max-w-5xl px-4 py-10 bg-gray-50">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-4xl bg-white p-6 md:p-8 rounded-xl shadow-md"
+        className="w-full max-w-4xl bg-white text-black p-6 md:p-8 rounded-xl shadow-md"
         encType="multipart/form-data"
       >
         <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
@@ -169,6 +174,13 @@ const UpdateProductPage = () => {
           value={formData.weight}
           onChange={handleChange}
           error={errors.weight}
+        />
+        <FormGroup
+          label="Rating"
+          name="rating"
+          value={formData.rating}
+          onChange={handleChange}
+          error={errors.rating}
         />
 
         {/* Price */}

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // utils/decodeToken.ts
-"use server";
+
 import { jwtDecode } from "jwt-decode";
 
 export interface DecodedToken {

@@ -19,9 +19,10 @@ type Tuser = {
   weight: string;
   rating: string;
   description: string;
+  offerPercent: string;
 };
 
-const ProductList = () => {
+const OfferProductList = () => {
   const [products, setProduct] = useState<Tuser[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,7 +40,7 @@ const ProductList = () => {
       }
 
       try {
-        const res = await publicAxios.get("/grosary-product");
+        const res = await publicAxios.get("/offer");
         setProduct(res.data.data);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -87,7 +88,7 @@ const ProductList = () => {
       }
 
       try {
-        const res = await authAxiosInstance.delete(`/grosary-product/${_id}`);
+        const res = await authAxiosInstance.delete(`/offer/${_id}`);
 
         if (res.status === 200 || res.status === 204) {
           Swal.fire("Deleted!", "Product has been deleted.", "success");
@@ -123,6 +124,7 @@ const ProductList = () => {
               <th className="border-b px-6 py-3">Name</th>
               <th className="border-b px-6 py-3">category</th>
               <th className="border-b px-6 py-3">Price</th>
+              <th className="border-b px-6 py-3">offerPercent</th>
               <th className="border-b px-6 py-3">weaight</th>
               <th className="border-b px-6 py-3">Rating</th>
               <th className="border-b px-6 py-3 text-center">Update</th>
@@ -145,15 +147,15 @@ const ProductList = () => {
                 <td className="border-t px-6 py-4">{product.name}</td>
                 <td className="border-t px-6 py-4">{product.category}</td>
                 <td className="border-t px-6 py-4">{product.price}</td>
+                <td className="border-t px-6 py-4">{product.offerPercent}%</td>
+
                 <td className="border-t px-6 py-4 capitalize">
                   {product.weight}
                 </td>
-                <td className="border-t px-6 py-4 capitalize">
-                  {product.rating}
-                </td>
+                <td className="border-t px-6 py-4">{product.rating}</td>
                 <td className="border-t px-6 py-4 text-center">
                   <Link
-                    href={`/dashboard/productlist/updateproduct/${product._id}`}
+                    href={`/dashboard/offerproductlist/updateproduct/${product._id}`}
                   >
                     <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">
                       Update
@@ -193,4 +195,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default OfferProductList;

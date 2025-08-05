@@ -50,7 +50,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/unauthorized", request.url));
   }
 
-  if (isLoggedIn && isPublicPath) {
+  if (isLoggedIn && ["/login", "/register", "/"].includes(pathname)) {
     return NextResponse.redirect(
       new URL(role === "admin" ? "/dashboard" : "/", request.url)
     );

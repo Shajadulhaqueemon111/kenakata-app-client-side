@@ -5,18 +5,20 @@ import React, { useEffect, useState } from "react";
 import publicAxios from "@/axiosInstance/publicaxios";
 
 import Image from "next/image";
-import { TiShoppingCart } from "react-icons/ti";
+
 import Loading from "../loading";
 import CookingBanner from "./cookingBanner";
 import { useSearch } from "@/context/SearchContext";
-import { useDispatch } from "react-redux";
-import { addToCart } from "@/app/redux/features/counter/counterSlice";
+
+import Rating from "@/components/Reating/Rating";
+import Link from "next/link";
+import { AiOutlineEye } from "react-icons/ai";
 
 const CookingAndEssentialsProduct = () => {
   const [grosary, setGrosary] = useState([]);
   const [loading, setLoading] = useState(false);
   const { query } = useSearch();
-  const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -75,15 +77,17 @@ const CookingAndEssentialsProduct = () => {
 
                 <p className="mt-1 font-bold text-black">৳{item.price}</p>
                 <p className="text-xs text-gray-500">Weight: {item.weight}</p>
-
-                <div className="text-center mx-auto mt-4">
-                  <button
-                    onClick={() => dispatch(addToCart(item))}
-                    className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-red-500 hover:bg-red-600 transition duration-200 py-2 px-4 rounded-xl w-full"
-                  >
-                    <TiShoppingCart className="text-center text-xl  " />
-                    Add to Bag
-                  </button>
+                <p className="text-xs text-gray-500">
+                  {" "}
+                  <Rating value={Number(item.rating)} />
+                </p>
+                <div className="text-center mt-4">
+                  <Link href={`/user/CookingEssentials/${item._id}`}>
+                    <button className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-blue-500 hover:bg-blue-600 transition duration-200 py-2 px-4 rounded-xl w-full">
+                      <AiOutlineEye className="text-xl" />
+                      View Details
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}

@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import publicAxios from "@/axiosInstance/publicaxios";
-import { TiShoppingCart } from "react-icons/ti";
+
 import frutsvagitables from "../../user/allImages/benefits-of-vegetables-1Th.jpg";
 import meetandfish from "../../user/allImages/fishandmit.jpg";
 import cooking from "../../user/allImages/cooking.jpg";
@@ -18,9 +18,11 @@ import godrej from "../../user/allImages/popularon/godrej-seeklogo.webp";
 import cokakola from "../../user/allImages/popularon/coca-cola.webp";
 import megi from "../../user/allImages/popularon/fresh.webp";
 import Loading from "../loading";
-import { useDispatch } from "react-redux";
-import { addToCart } from "@/app/redux/features/counter/counterSlice";
+
 import { useSearch } from "@/context/SearchContext";
+import Rating from "@/components/Reating/Rating";
+import { AiOutlineEye } from "react-icons/ai";
+import Link from "next/link";
 
 const categories = [
   {
@@ -53,7 +55,7 @@ export default function PopularCategory() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+
   const { query } = useSearch();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -181,21 +183,21 @@ export default function PopularCategory() {
 
               <h3 className="font-semibold mt-2 text-black">{product.name}</h3>
 
-              <p className="text-sm text-gray-600 h-[48px] overflow-hidden">
-                {product.description}
-              </p>
-
               <p className="mt-1 font-bold text-black">৳{product.price}</p>
               <p className="text-xs text-gray-500">Weight: {product.weight}</p>
-
-              <div className="text-center mx-auto mt-4 w-full">
-                <button
-                  onClick={() => dispatch(addToCart(product))}
-                  className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-red-500 hover:bg-red-600 transition duration-200 py-2 px-4 rounded-xl w-full"
+              <p className="text-xs text-gray-500">
+                {" "}
+                <Rating value={Number(product.rating)} />
+              </p>
+              <div className="text-center  mt-4 w-full">
+                <Link
+                  href={`/user/popularCategory/popularCategoryDetails/${product._id}`}
                 >
-                  <TiShoppingCart className="text-xl" />
-                  Add to Bag
-                </button>
+                  <button className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-blue-500 hover:bg-blue-600 transition duration-200 py-2 px-4 rounded-xl w-full">
+                    <AiOutlineEye className="text-xl" />
+                    View Details
+                  </button>
+                </Link>
               </div>
             </div>
           ))}

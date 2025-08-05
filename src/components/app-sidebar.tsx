@@ -4,6 +4,7 @@ import * as React from "react";
 import {
   IconCamera,
   IconChartBar,
+  IconCreativeCommons,
   IconDashboard,
   IconFolder,
   IconInnerShadowTop,
@@ -50,6 +51,17 @@ const data = {
       url: "/dashboard/viewallorders",
       icon: IconFolder,
     },
+    {
+      title: "create-offer-product",
+      url: "/dashboard/createofferprice",
+      icon: IconFolder,
+    },
+    {
+      title: "offer-product-list",
+      url: "/dashboard/offerproductlist",
+      icon: IconCreativeCommons,
+    },
+
     // {
     //   title: "Download invoice",
     //   url: "/invoice/dashboard",
