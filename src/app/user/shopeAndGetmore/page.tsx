@@ -71,6 +71,11 @@ const ShopeAndGetMore = () => {
       </div>
 
       <div className="mt-4">
+        <div>
+          <h2 className="text-center text-xl font-bold text-black mt-2 mb-4">
+            My Shop View
+          </h2>
+        </div>
         <div
           className="bg-cover rounded-md bg-center bg-no-repeat px-4 sm:px-6 lg:px-8 py-12 text-center sm:text-left"
           style={{
@@ -93,63 +98,71 @@ const ShopeAndGetMore = () => {
         </div>
       </div>
       {/* wirehose sction*/}
-      <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 px-4 py-8">
-        {/* Card 1 */}
-        <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <h1 className="text-xl font-semibold text-gray-800">
-                26 warehouses
-              </h1>
-              <p className="text-gray-600">all over Bangladesh</p>
-            </div>
-            <div className="text-green-600 text-4xl">
-              <Home />
+      <div className="mt-6">
+        <div>
+          <h1 className="text-xl font-bold text-center text-black mb-2">
+            Trusted by Families, Backed by Millions
+          </h1>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 px-4 py-8">
+          {/* Card 1 */}
+
+          <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <h1 className="text-xl font-semibold text-gray-800">
+                  26 warehouses
+                </h1>
+                <p className="text-gray-600">all over Bangladesh</p>
+              </div>
+              <div className="text-green-600 text-4xl">
+                <Home />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Card 2 */}
-        <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <h1 className="text-xl font-semibold text-gray-800">
-                5 million orders
-              </h1>
-              <p className="text-gray-600">have been delivered</p>
-            </div>
-            <div className="text-blue-600 text-4xl">
-              <ShoppingBag />
+          {/* Card 2 */}
+          <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <h1 className="text-xl font-semibold text-gray-800">
+                  5 million orders
+                </h1>
+                <p className="text-gray-600">have been delivered</p>
+              </div>
+              <div className="text-blue-600 text-4xl">
+                <ShoppingBag />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Card 3 */}
-        <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <h1 className="text-xl font-semibold text-gray-800">
-                100,000 families
-              </h1>
-              <p className="text-gray-600">are being served</p>
-            </div>
-            <div className="text-purple-600 text-4xl">
-              <ShoppingBag />
+          {/* Card 3 */}
+          <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <h1 className="text-xl font-semibold text-gray-800">
+                  100,000 families
+                </h1>
+                <p className="text-gray-600">are being served</p>
+              </div>
+              <div className="text-purple-600 text-4xl">
+                <ShoppingBag />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Card 4 */}
-        <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <h1 className="text-xl font-semibold text-gray-800">
-                340 million Taka
-              </h1>
-              <p className="text-gray-600">customer savings</p>
-            </div>
-            <div className="text-yellow-600 text-4xl">
-              <GiMoneyStack />
+          {/* Card 4 */}
+          <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <h1 className="text-xl font-semibold text-gray-800">
+                  340 million Taka
+                </h1>
+                <p className="text-gray-600">customer savings</p>
+              </div>
+              <div className="text-yellow-600 text-4xl">
+                <GiMoneyStack />
+              </div>
             </div>
           </div>
         </div>

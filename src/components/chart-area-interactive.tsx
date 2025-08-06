@@ -180,7 +180,7 @@ export function ChartAreaInteractive() {
                 Total Sales
               </CardTitle>
               <CardDescription className="text-blue-600 text-xl font-bold mt-1">
-                ${totalSales.toFixed(2)}
+                {totalSales.toFixed(2)} Tk
               </CardDescription>
             </CardHeader>
           </Card>
@@ -191,7 +191,7 @@ export function ChartAreaInteractive() {
                 Average Daily Sales
               </CardTitle>
               <CardDescription className="text-green-600 text-xl font-bold mt-1">
-                ${avgSales.toFixed(2)}
+                {avgSales.toFixed(2)} Tk
               </CardDescription>
             </CardHeader>
           </Card>
@@ -202,7 +202,7 @@ export function ChartAreaInteractive() {
                 Max Sales in a Day
               </CardTitle>
               <CardDescription className="text-yellow-600 text-xl font-bold mt-1">
-                ${maxSales.toFixed(2)}
+                {maxSales.toFixed(2)} Tk
               </CardDescription>
             </CardHeader>
           </Card>

@@ -110,7 +110,7 @@ const ViewAllOrders = () => {
             </tr>
           </thead>
           <tbody className="text-sm text-gray-700 divide-y divide-gray-200">
-            {orders.map((order: any) => (
+            {orders?.map((order: any) => (
               <tr key={order._id} className="hover:bg-gray-50">
                 {/* User Info */}
                 <td className="px-5 py-4 align-top">
@@ -122,21 +122,29 @@ const ViewAllOrders = () => {
 
                 {/* Product Info */}
                 <td className="px-5 py-4">
-                  {order.products.map((item: any, idx: number) => (
+                  {order?.products.map((item: any, idx: number) => (
                     <div key={idx} className="mb-3">
-                      <p className="font-semibold text-sm">
-                        {item.product.name} × {item.quantity}
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        {item.product.category}, {item.product.weight}
-                      </p>
-                      <Image
-                        src={item.product.image}
-                        alt={item.product.name}
-                        width={60}
-                        height={40}
-                        className="rounded mt-1"
-                      />
+                      {item.product ? (
+                        <>
+                          <p className="font-semibold text-sm">
+                            {item.product.name} × {item.quantity}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {item.product.category}, {item.product.weight}
+                          </p>
+                          <Image
+                            src={item?.product?.image || "/placeholder.png"}
+                            alt={item.product.name || "product image"}
+                            width={60}
+                            height={40}
+                            className="rounded mt-1"
+                          />
+                        </>
+                      ) : (
+                        <p className="text-sm text-red-500">
+                          Product data not available (may have been deleted).
+                        </p>
+                      )}
                     </div>
                   ))}
                 </td>

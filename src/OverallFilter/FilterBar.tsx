@@ -4,7 +4,8 @@
 
 import { useEffect, useState } from "react";
 import { useFilter } from "./FilterContext";
-import axios from "axios";
+
+import publicAxios from "@/axiosInstance/publicaxios";
 
 const FilterBar = () => {
   const {
@@ -18,7 +19,7 @@ const FilterBar = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/v1/offer");
+        const res = await publicAxios.get("/offer");
         console.log(res);
         const products: { category: string }[] = res.data.data;
 

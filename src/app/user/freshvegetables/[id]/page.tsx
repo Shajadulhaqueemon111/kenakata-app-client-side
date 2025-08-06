@@ -9,6 +9,8 @@ import { addToCart } from "@/app/redux/features/counter/counterSlice";
 import Rating from "@/components/Reating/Rating";
 
 import publicAxios from "@/axiosInstance/publicaxios";
+import Link from "next/link";
+import Loading from "../../loading";
 
 type Product = {
   _id: string;
@@ -19,6 +21,7 @@ type Product = {
   description: string;
   image: string;
   rating: string;
+  model: string;
 };
 
 const FreshVegitableDetails = () => {
@@ -45,7 +48,11 @@ const FreshVegitableDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <div className="text-center mt-10 text-black">Loading...</div>;
+    return (
+      <div className="text-center mt-10 text-black">
+        <Loading />{" "}
+      </div>
+    );
   }
 
   if (!product) {
@@ -90,12 +97,34 @@ const FreshVegitableDetails = () => {
           </div>
 
           <button
-            onClick={() => dispatch(addToCart(product))}
+            onClick={() =>
+              dispatch(addToCart({ ...product, model: "grosaryproduct" }))
+            }
             className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-lg transition text-sm md:text-base w-fit"
           >
             <TiShoppingCart className="text-xl" />
             Add to Bag
           </button>
+        </div>
+      </div>
+      <div className="mt-12 text-center text-black bg-gray-100 py-10 rounded-lg shadow-inner">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Your Satisfaction, Our Priority
+        </h2>
+        <p className="max-w-2xl mx-auto text-gray-600 mb-6">
+          We are committed to delivering the freshest and highest quality
+          products directly to your doorstep. Let us know how were doing!
+        </p>
+
+        <Link href="/user/feedback">
+          <button className="inline-block bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
+            Leave Feedback
+          </button>
+        </Link>
+
+        <div className="mt-8 max-w-xl mx-auto text-gray-500 text-sm italic">
+          “Fresh meat and fish,vegitables,fruits,cooking responsibly sourced.
+          Trust us to feed your family the best nature has to offer.”
         </div>
       </div>
     </div>

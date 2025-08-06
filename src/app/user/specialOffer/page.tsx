@@ -1,11 +1,12 @@
 "use client";
 
+import publicAxios from "@/axiosInstance/publicaxios";
 import Rating from "@/components/Reating/Rating";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearch } from "@/context/SearchContext";
 import FilterBar from "@/OverallFilter/FilterBar";
 import { useFilter } from "@/OverallFilter/FilterContext";
-import axios from "axios";
+
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -36,7 +37,7 @@ const SpecialOffer = () => {
     const fetchOfferProduct = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/offer");
+        const response = await publicAxios.get("/offer");
         setOfferProduct(response.data.data);
       } catch (error) {
         console.log(error);

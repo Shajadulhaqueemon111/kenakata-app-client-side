@@ -32,8 +32,8 @@ const ProductCard = ({ item }: { item: any }) => (
       {" "}
       <Rating value={Number(item.rating)} />
     </p>
-    <div className="text-center mx-auto mt-4">
-      <Link href={`/user/allmeatandfish/${item._id}`}>
+    <div className="text-center  mt-4">
+      <Link href={`/user/allfruitesandvegetables/${item._id}`}>
         <button className="mt-4 text-sm flex items-center justify-center gap-2 font-semibold text-white bg-blue-500 hover:bg-blue-600 transition duration-200 py-2 px-4 rounded-xl w-full">
           <AiOutlineEye className="text-xl" />
           View Details

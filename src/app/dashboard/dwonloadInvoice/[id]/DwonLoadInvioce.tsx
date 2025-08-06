@@ -109,7 +109,10 @@ const DwonLoadInvioce = ({ order }: { order: TOrder }) => {
         <div className="mb-4">
           <h4 className="font-semibold mb-2">Products:</h4>
           {order.products.map((item, index) => (
-            <div key={index} className="border-b border-gray-300 mb-2 pb-2">
+            <div
+              key={index}
+              className="border-b border-gray-300 mb-2 text-black pb-2"
+            >
               <p>
                 <span className="font-medium">{item.product.name}</span> ×{" "}
                 {item.quantity}

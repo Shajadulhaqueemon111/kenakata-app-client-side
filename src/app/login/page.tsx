@@ -93,7 +93,6 @@ const LoginPage = () => {
             onClick={() => {
               setEmail("mdshajdulhaqueemon@gmail.com");
               setPassword("12345Aa!");
-              toast.success("User credentials filled");
             }}
           >
             Fill User Credentials
@@ -105,7 +104,6 @@ const LoginPage = () => {
             onClick={() => {
               setEmail("admin@gmail.com");
               setPassword("admin123");
-              toast.success("Admin credentials filled");
             }}
           >
             Fill Admin Credentials

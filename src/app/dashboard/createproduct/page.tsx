@@ -16,6 +16,7 @@ type Tproduct = {
   image: string;
   weight: string;
   description: string;
+  rating: string;
 };
 
 const categoryOptions = [
@@ -32,6 +33,7 @@ const CreateProduct = () => {
     category: "",
     price: "",
     weight: "",
+    rating: "",
     description: "",
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -69,12 +71,17 @@ const CreateProduct = () => {
     data.append("category", formData.category);
     data.append("price", formData.price);
     data.append("weight", formData.weight);
+    data.append("rating", formData.rating);
     data.append("description", formData.description);
     data.append("image", imageFile);
 
     try {
       setIsSubmitting(true);
-      await authAxiosInstance.post("/grosary-product/create-grosary", data);
+      const response = await authAxiosInstance.post(
+        "/grosary-product/create-grosary",
+        data
+      );
+      console.log(response);
       toast.success("Product created successfully!");
       router.push("/dashboard/productlist");
       setFormData({
@@ -83,6 +90,7 @@ const CreateProduct = () => {
         price: "",
         weight: "",
         description: "",
+        rating: "",
       });
       setImageFile(null);
     } catch (err: any) {
@@ -153,6 +161,13 @@ const CreateProduct = () => {
           label="Weight"
           name="weight"
           value={formData.weight}
+          onChange={handleChange}
+          required
+        />
+        <FormInput
+          label="Rating"
+          name="rating"
+          value={formData.rating}
           onChange={handleChange}
           required
         />

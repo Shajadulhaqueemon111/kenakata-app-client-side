@@ -9,6 +9,7 @@ type Product = {
   description: string;
   image: string;
   quantity: number; // Custom quantity per item in cart
+  model: string;
 };
 
 interface CartState {
