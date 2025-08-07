@@ -16,7 +16,7 @@ const Newsletter = () => {
         Newsletter
       </h1>
       <div
-        className="relative max-w-5xl mx-auto bg-cover bg-center bg-no-repeat py-20 px-4 md:px-8 rounded-md"
+        className="relative max-w-7xl mx-auto bg-cover bg-center bg-no-repeat py-20 px-4 md:px-8 rounded-md"
         style={{
           backgroundImage:
             "url('https://i.ibb.co/BV5nbcJ1/beautiful-fall-nature-scenery-free-image.webp')",

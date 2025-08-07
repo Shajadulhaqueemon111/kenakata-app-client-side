@@ -26,7 +26,7 @@ const AllRoutePage = () => {
       <div className="mt-4">
         <ShopeAndGetMore />
       </div>
-      <div className="mt-4">
+      <div className="mt-1">
         <CurrentDelevary />
       </div>
       <div className="mt-4">

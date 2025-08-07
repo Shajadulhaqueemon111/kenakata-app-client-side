@@ -31,7 +31,7 @@ const SpecialOffer = () => {
 
   const { selectedCategory, selectedPrice } = useFilter();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemPerPage = 6;
+  const itemPerPage = 8;
 
   useEffect(() => {
     const fetchOfferProduct = async () => {
@@ -105,7 +105,7 @@ const SpecialOffer = () => {
                   alt={offer.name}
                   width={300}
                   height={200}
-                  className="w-full h-[180px] object-cover rounded-xl"
+                  className="w-full h-full object-cover rounded-xl"
                 />
 
                 <h3 className="font-semibold mt-3 text-lg text-black">

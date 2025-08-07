@@ -101,7 +101,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="max-w-5xl  mx-auto p-6 bg-white shadow rounded-md mt-8">
+    <div className="max-w-5xl  mx-auto p-6 bg-white shadow rounded-md mt-8 text-black">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
         Create New Product
       </h2>

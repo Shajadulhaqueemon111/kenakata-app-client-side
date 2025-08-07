@@ -2,13 +2,13 @@ import React from "react";
 
 const CurrentDelevary = () => {
   return (
-    <div className="py-12 px-4">
-      <h1 className="text-center text-2xl font-extrabold text-gray-800 mb-6">
+    <div className=" px-2">
+      <h1 className="text-center text-xl font-bold text-gray-800 mb-4">
         Current Delivery Areas
       </h1>
 
       <div
-        className="relative bg-cover bg-center py-16 px-6 rounded-2xl shadow-xl max-w-5xl mx-auto"
+        className="relative bg-cover bg-center py-16 px-6 rounded-2xl shadow-xl max-w-7xl mx-auto"
         style={{
           backgroundImage:
             "url('https://i.ibb.co/k69LTZ3h/delivery-staff-ride-motorcycles-shopping-concept-1150-34879.jpg')",

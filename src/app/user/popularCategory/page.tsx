@@ -52,14 +52,16 @@ const categories = [
 ];
 
 export default function PopularCategory() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    "Fruits & Vegetables"
+  );
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
   const { query } = useSearch();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemPerPage = 6;
+  const itemPerPage = 8;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -68,8 +70,7 @@ export default function PopularCategory() {
         const res = await publicAxios("/grosary-product");
         const productArray = res.data.data;
 
-        const selected =
-          selectedCategory?.toLowerCase().replace(/\s/g, "") || "";
+        const selected = selectedCategory.toLowerCase().replace(/\s/g, "");
 
         const filteredData = productArray.filter((p: { category: string }) => {
           const prodCat = p.category.toLowerCase().replace(/\s/g, "");
@@ -92,9 +93,7 @@ export default function PopularCategory() {
       }
     };
 
-    if (selectedCategory) {
-      fetchProducts();
-    }
+    fetchProducts();
   }, [selectedCategory]);
 
   const filterAllProduct = products.filter((product: any) =>

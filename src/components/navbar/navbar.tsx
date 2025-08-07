@@ -46,7 +46,8 @@ export default function Navbar() {
         <div className="text-2xl font-bold text-primary text-linear-to-bl from-violet-500 to-fuchsia-500">
           <Link href="/">
             <h1 className="text-xl font-bold text-red-600">
-              Kena<span className="text-green-600 text-xl">kata</span>
+              Kena
+              <span className="text-blue-500  text-xl">kata</span>
             </h1>
           </Link>
         </div>
